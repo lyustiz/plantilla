@@ -15,19 +15,18 @@
     </v-navigation-drawer>
 
     <!--NavBar-->
-    <!-- :clipped-left="$vuetify.breakpoint.mdAndUp"  -->
-    <v-toolbar
 
+    <v-app-bar
+    :clipped-left="$vuetify.breakpoint.mdAndUp"
     :color="$App.theme.headPpal"
-
     fixed
-    app
+    dark
     >
         <!--Titulo-->
-        <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title"></v-toolbar-title>
+        <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title">x</v-toolbar-title>
 
         <!--Toggle Menu Lateral-->
-        <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
         <!--Toggle iconos/texto-->
         <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -53,7 +52,7 @@
             </v-btn>
         </v-form>
 
-    </v-toolbar>
+    </v-app-bar>
 
     <!--Contenido-->
     <v-content>

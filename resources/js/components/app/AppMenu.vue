@@ -3,7 +3,7 @@
     <!--menu-->
     <v-list>
 
-        <v-list-tile
+        <v-list-item
         router
         :to="item.to"
         :key="i"
@@ -12,15 +12,15 @@
         ripple
         active-class="menu-active"
         >
-            <v-list-tile-action>
+            <v-list-item-avatar>
                 <v-icon v-html="item.icon"></v-icon>
-            </v-list-tile-action>
+            </v-list-item-avatar>
 
-            <v-list-tile-content>
-                <v-list-tile-title v-text="item.title"></v-list-tile-title>
-            </v-list-tile-content>
+            <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
 
-        </v-list-tile>
+        </v-list-item>
 
     </v-list>
 

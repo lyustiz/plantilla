@@ -1,9 +1,11 @@
 import Vue      from 'vue';
-import vuetify  from 'vuetify';
-import router   from './router'
-import store    from './store'
+import router   from './router';
+import store    from './store';
 
-//Vue.use(Vuetify);
+
+/** Plugins **/
+import './plugins/axios';
+import vuetify from './plugins/vuetify';
 
 /** Componente Ppal   **/
 import App from './layouts/App.vue'
@@ -27,10 +29,6 @@ Vue.prototype.$App = Object.freeze({
             textModal: 'white--text',
             }
     })
-
-/** Plugins **/
-import './plugins/axios'
-import './plugins/vuetify'
 
 /** Components Autoload **/
 import './components/components'
