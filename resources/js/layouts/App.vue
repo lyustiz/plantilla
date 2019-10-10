@@ -1,29 +1,15 @@
 <template>
   <v-app>
 
-    <!--navegacion lateral-->
-    <v-navigation-drawer
-      :mini-variant.sync="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      fixed
-      app
-    >
-        <!--menu-->
-        <layout-menu :items=items></layout-menu>
-
-    </v-navigation-drawer>
-
-    <!--NavBar-->
-
+    <!--AppBar-->
     <v-app-bar
-    :clipped-left="$vuetify.breakpoint.mdAndUp"
-    :color="$App.theme.headPpal"
-    fixed
-    dark
+        app
+        :color="$App.theme.headPpal"
+        clipped-left
+      dark
     >
         <!--Titulo-->
-        <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title">x</v-toolbar-title>
+        <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title"></v-toolbar-title>
 
         <!--Toggle Menu Lateral-->
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -33,7 +19,7 @@
             <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
         </v-btn>
 
-        <v-spacer></v-spacer>
+        <div class="flex-grow-1"></div>
 
         <!--Ayuda-->
         <v-btn icon >
@@ -54,13 +40,27 @@
 
     </v-app-bar>
 
+    <!--navegacion lateral-->
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      clipped
+      fixed
+      app
+    >
+        <!--menu-->
+        <layout-menu :items=items></layout-menu>
+
+    </v-navigation-drawer>
+
     <!--Contenido-->
     <v-content>
-
+        <v-container>
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
             </transition>
 
+        </v-container>
     </v-content>
 
     <!--Footer-->
@@ -81,15 +81,15 @@
       components: { 'layout-menu': LayoutMenu },
      data () {
         return {
-            clipped: true,
-            drawer: true,
+            clipped: false,
+            drawer: false,
             fixed: false,
             items: [
                 { icon: 'insert_chart', title: 'Inicio', to: '/' },
                 { icon: 'account_balance', title: 'Banco', to: '/banco' },
                 { icon: 'assignment', title: 'Oferta Comercial', to: '/ofertaComercial' }
             ],
-            miniVariant: true,
+            miniVariant: false,
         }
     },
     computed:
@@ -112,7 +112,7 @@
 
     /* Ajuste Icons */
     .v-icon {
-        display: inherit !important;
+        //display: inherit !important;
     }
 
     /* Transicion Contenido */

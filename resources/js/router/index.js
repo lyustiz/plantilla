@@ -3,8 +3,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Home       from '../pages/home/index.vue'
-import Banco      from '../pages/banco/BancoList.vue'
-import BancoForm  from '../pages/banco/BancoForm.vue'
+import Banco      from '../pages/banco/banco.vue'
+import BancoForm  from '../pages/banco/form.vue'
 
 //router.addRoutes(routes: Array<RouteConfig>)
 
