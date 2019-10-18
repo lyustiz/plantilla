@@ -1,0 +1,131 @@
+@charset "utf-8";
+
+/*******************/
+/* Estilo del body */
+/*******************/
+body{
+margin-left: 0px;
+margin-top: 0px;
+margin-right:0px;
+overflow:hidden;
+}
+
+/*********************/
+/* Estilo del header */
+/*********************/
+.header{
+border:1px solid #c4c4c4;
+border-left:none;
+border-top:none;
+border-right:none;
+height:68px;
+left:0px;
+top:0px;
+}
+
+.header > div{
+float:left;
+height:100%;
+}
+
+.header > div:nth-child(1){
+background-image:url(../images/fondo_menu_izq.png);
+background-position:center center;
+background-repeat:no-repeat;
+background-size:100% 100%;
+width:168px;
+}
+
+.header > div:nth-child(2){
+background-image:url(../images/fondo_menu_centro.png);
+background-position:center center;
+background-repeat:repeat-x;
+background-size:100% 100%;
+}
+
+.header > div:nth-child(3){
+background-image:url(../images/fondo_menu_der.png);
+background-position:center center;
+background-repeat:no-repeat;
+background-size:100% 100%;
+width:20px;
+}
+
+/***********************/
+/* Estilo de los menus */
+/***********************/
+.header > div:nth-child(2) ul{
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.header > div:nth-child(2) ul li{
+/*border:1px solid #cc0000;*/
+color:#000000;
+cursor:pointer;
+float:left;
+font-family:arial, sans-serif; 
+font-size:12px; 
+font-weight:bold;
+height:70px;
+line-height:68px; 
+padding:0px 25px 0px 25px; 
+position:relative;
+text-decoration:none;
+width:auto;
+}
+
+.header > div:nth-child(2 ) ul .modulo{
+/*border:1px solid #B40407;*/
+background-image:url(../images/btn_desplegar.png);
+background-position:right center;
+background-repeat:no-repeat;
+}
+
+.header > div:nth-child(2) ul li:hover {
+color:#cc0000;
+}
+
+/*Menu del 1er nivel*/
+.header > div:nth-child(2) ul li ul{
+display:none;
+float:left;
+margin-top:0px;
+margin-left:-20px;
+position:absolute;
+}
+
+.header > div:nth-child(2) ul li ul li{
+background:#edecec;
+border-top:1px solid #C4C4C4;
+height:40px;
+line-height:40px;
+width:200px;
+z-index:2;
+}
+
+/******************************************************************/
+/* Estilo del iframe que muestra el contenido de las aplicaciones */
+/******************************************************************/
+.contenido_menu{
+/*border:1px solid #E80003;*/
+margin-top:5px;
+min-height:300px;
+overflow:hidden !important;
+position:absolute;
+width:100%;
+}
+
+.contenido_menu iframe{
+border:none;
+height:99%;
+overflow:scroll !important;
+width:99.8%;
+}
+
+.not_found{
+left:35%;
+position:absolute;
+top:25%;
+}

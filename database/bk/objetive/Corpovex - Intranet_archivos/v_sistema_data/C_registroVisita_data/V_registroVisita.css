@@ -1,0 +1,35 @@
+.foto_container{
+	width: 		8.7em;
+	height: 	9.5em;
+	border-radius: 12px;
+	padding: 0.3em;
+}
+
+.foto_container img{
+	width: 		8.3em;
+	height: 	9.3em;
+	border-radius: 12px;
+	padding: 0.3em;
+}
+
+.foto_container:hover{
+	opacity: 0.5;
+	cursor: pointer;
+}	
+
+#foto_camara {
+	width: 		150px;
+	height: 	200px;
+	border-radius: 10px;
+	padding: 0.3em
+}
+	
+#video{
+	
+	border-radius: 12px;
+}
+/*reportes*/
+.btn_calendar:hover{
+	opacity: 0.5;
+	cursor: pointer;
+}
