@@ -19,8 +19,8 @@
     <v-app-bar
     :clipped-left="$vuetify.breakpoint.mdAndUp"
     :color="$App.theme.headPpal"
-    fixed
     dark
+    app
     >
         <!--Titulo-->
         <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title">x</v-toolbar-title>
@@ -56,10 +56,10 @@
 
     <!--Contenido-->
     <v-content>
-
-            <transition name="fade" mode="out-in">
-                <router-view></router-view>
-            </transition>
+        
+        <transition name="fade" mode="out-in">
+            <router-view></router-view>
+        </transition>
 
     </v-content>
 

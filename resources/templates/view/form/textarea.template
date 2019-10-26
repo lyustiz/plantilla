@@ -1,0 +1,8 @@
+
+        <v-flex xs12 >
+            <v-textarea
+                v-model="form.{{columnName}}"
+                label="{{fieldName}}"
+                placeholder="Indique {{fieldName}}"
+            ></v-textarea>
+        </v-flex>

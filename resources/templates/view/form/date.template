@@ -1,0 +1,26 @@
+
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.{{columnName}}"
+                full-width
+                min-width="290px"
+                readonly
+            >
+                <v-text-field
+                slot="activator"
+                v-model="dates.{{columnName}}"
+                :rules="rules.etapaCo"
+                label="Fecha Corresponsal"
+                prepend-icon="event"
+                readonly
+                required
+                ></v-text-field>
+
+                <v-date-picker 
+                    v-model="form.{{columnName}}" 
+                    locale="es"
+                    @input="dates.{{columnName}} = formatDate( form.{{columnName}} )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>

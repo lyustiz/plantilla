@@ -1,0 +1,15 @@
+protected $table 	  = '{{tableName}}';
+	protected $primaryKey = '{{pkColumn}}';
+	
+	const 	  CREATED_AT  = '{{createdAt}}';
+	const 	  UPDATED_AT  = '{{updatedAt}}';
+
+    protected $fillable   = [
+                            {{showCols}}
+                            ]; 
+    
+    protected $hidden     = [
+                            {{hiddenCols}}
+                            ];
+
+{{Constraints}}

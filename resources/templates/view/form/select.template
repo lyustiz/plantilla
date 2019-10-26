@@ -1,0 +1,14 @@
+         
+        <v-flex xs12 sm6>
+            <v-select
+            :items="list.{{fkTableName}}"
+            item-text="{{fkColTableName}}"
+            item-value="{{columnName}}"
+            v-model="form.{{columnName}}"
+            :rules="rules.select"
+            label="{{fieldName}}"
+            autocomplete
+            required
+            ></v-select>
+        </v-flex>
+         

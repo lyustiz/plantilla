@@ -1,0 +1,4 @@
+    public function {{functionTableName}}()
+    {
+        return $this->HasMany('App\Models\{{modelTableName}}', '{{foreingColumn}}');
+    } 
