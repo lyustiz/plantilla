@@ -1,5 +1,5 @@
  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.{{columnName}}"

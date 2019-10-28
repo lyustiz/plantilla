@@ -1,5 +1,5 @@
 
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-textarea
                 v-model="form.{{columnName}}"
                 label="{{fieldName}}"

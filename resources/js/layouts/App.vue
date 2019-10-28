@@ -88,7 +88,8 @@
                 { icon: 'insert_chart', title: 'Inicio', to: '/' },
                 { icon: 'account_balance', title: 'Banco', to: '/banco' },
                 { icon: 'assignment', title: 'Oferta Comercial', to: '/ofertaComercial' },
-                { icon: 'assignment', title: 'Bitacora', to: '/bitacora' }
+                { icon: 'assignment', title: 'Bitacora', to: '/bitacora' },
+                { icon: 'assignment', title: 'Usuario', to: '/usuario' }
             ],
             miniVariant: false,
         }

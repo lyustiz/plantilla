@@ -68,15 +68,16 @@
                 min-width="290px"
                 readonly
             >
+                <template v-slot:activator="{ on }">
                 <v-text-field
-                slot="activator"
-                v-model="dates.fe_accion"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
+                    v-on="on"
+                    v-model="dates.fe_accion"
+                    :rules="rules.etapaCo"
+                    label="Fecha Corresponsal"
+                    prepend-icon="event"
+                    readonly
                 ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_accion" 
@@ -116,7 +117,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -128,6 +129,9 @@ export default {
     data(){
         return{
             tabla: 'bitacora',
+            picker: {
+                fe_accion: ''
+            },
             form:{
                 id_bitacora: '' ,
 				id_usuario: '',
