@@ -14,24 +14,48 @@ class Crud extends Controller
         $this->crud = $crudGenerate;
     }
 
-    public function index()
+    public function schemas()
     {
         $schemas = $this->crud->getSchemas();
 
-        return view('crud', compact('schemas'));
+        return  compact('schemas');
 
     }
-    
-    public function generate()
+
+    public function tables(Request $request)
     {
-        $databases = $this->crud->getDatabases();
+        $validate = request()->validate([
+            'schema'          => 'required',
+        ]);
+
+       if($request->schema == 'public') 
+       {
+            return  $this->crud->getTableMetadata();
+       }
         
+       return $this->crud->setSchema($request->schema)->getTableMetadata();
+    }
+    
+    public function generate(Request $request)
+    {
+      
+        $validate = request()->validate([
+            'tables'          => 'required',
+            'schema'          => 'required',
+        ]);
         
 
-        $schema = 'corpovex_visitas';
-
-        $tables = $this->crud->setSchema($schema)->getTableMetadata();
+        if($request->schema == 'public') 
+        {
+             $this->crud->getTableMetadata();
+        }
+        else
+        {
+           $this->crud->setSchema($request->schema)->getTableMetadata();
+        }
         
+       return 
+ 
         $this->crud->generate();
 
         //$object = json_decode(json_encode($array), FALSE);

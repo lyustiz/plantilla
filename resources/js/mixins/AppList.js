@@ -15,7 +15,7 @@ export default {
             isLoading:  true,
             modal:      false,
             selected:   [],
-            items:      '',
+            items:      [],
             item:       '',
             search:     '',
             accion:     '',

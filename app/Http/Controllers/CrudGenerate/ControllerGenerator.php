@@ -45,12 +45,18 @@ class ControllerGenerator
 
     public function generate()
     {
+        $controllers = [];
+        
         foreach ($this->tables as $tableName => $table) 
         {
             $cruds = $this->definition($tableName, $table);
  
             $this->compile($cruds, $table);
+
+            $controllers[$tableName] = $this->controllerPath . $table->className . 'Controller.php';
         }
+
+        return  $controllers;
     }
 
     public function definition($tableName, $table)
@@ -81,7 +87,7 @@ class ControllerGenerator
             file_get_contents(app_path($this->controllerPath . $table->className . 'Controller.php'))
         );
         
-        file_put_contents(
+        return file_put_contents(
             app_path($this->controllerPath . $table->className . 'Controller.php'),
             $compiled
         );

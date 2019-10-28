@@ -1,0 +1,308 @@
+@charset "utf-8";
+
+.capa_contenido{
+/*border:1px solid #D92528;*/
+height:100vh;
+min-height:700px !important;
+min-width:1200px !important;
+/*overflow:hidden;*/
+position:relative;
+width:100%;	
+}
+
+/*************************************/
+/* Estilo del membrete institucional */
+/*************************************/
+.capa_contenido .membrete{
+/*border:1px solid #E0070B;*/
+/*background:url('../images/membrete.png');*/
+background-size:100% 100%;
+height:50px;
+width:100%;
+}
+
+.capa_contenido .membrete > div{
+/*border:1px solid #E0070B;*/
+background-size:100% 100%;
+float:left;
+height:100%;
+}
+
+.capa_contenido .membrete .membrete_izq{
+background:url('../images/membrete_izq.png');
+background-size:100% 100%;
+float:left;
+width:350px;
+}
+
+.capa_contenido .membrete .membrete_der{
+background:url('../images/membrete_der.png');
+background-size:100% 100%;
+float:right;
+width:350px;
+}
+
+.capa_contenido > div:nth-child(2){
+background-color:#cc0000;
+border:1px solid #cc0000;
+height:1px;
+}
+
+.capa_contenido > div:nth-child(3){
+background-color:rgba(0, 0, 0, 0.6);
+border:1px solid rgba(0, 0, 0, 0.6);
+color:#ffffff;
+font-weight:bold;
+height:1px;
+line-height:30px;
+text-align:left;
+text-indent:30px;
+}
+
+/*- Contenido de la intranet -*/
+.capa_contenido > div:nth-child(4){
+/*border:1px solid #E8090D;*/
+height:88vh;
+/*min-height:590px !important;*/
+/*min-width:1200px !important;*/
+/*overflow:hidden;*/
+overflow:hidden;
+position:relative;
+width:100%;
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible{
+/*border:1px solid #15AC22;*/
+height:100%;
+position:relative;
+width:10000px;
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible > div{
+/*border:1px solid #0E32D5;*/
+float:left;
+height:100%;
+margin-right:50px;
+/*width:1950px;*/
+}
+
+/*- Capa que contiene el formulario para el login -*/
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(1){
+/*background:url('../images/fondo_textura_1.png');*/
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(1) table{
+margin-top: 10%;
+}
+
+/*- Capa que contiene los iconos del sistema -*/
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2){
+/*border:1px solid #0E32D5;*/
+margin: 0 auto;
+}
+
+/* Capa del icono del sistema */
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > div{
+/*border:1px solid #0826D7;*/
+float:left;
+font-weight:bold;
+height:110px;
+margin-left:15px;
+margin-top:15px;
+width:110px;
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > div:hover{
+color:#cc0000;
+cursor:pointer;
+opacity:0.9;
+}
+
+/* Imagen del icono del sistema u opción */
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > div .imagen{
+/*border:1px solid #F90C10;*/
+height:80%;
+width:100%;
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > div .imagen img{
+/*border:1px solid #F90C10;*/
+height:80%;
+width:80%;
+}
+
+/* Descripción del icono del sistema u opción */
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > div .descripcion{
+/*border:1px solid #F90C10;*/
+height:20%;
+width:100%;
+}
+
+.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) .salir_intranet .imagen{
+background-image:url('../images/icon_salir.png');
+background-position:center;
+background-repeat:no-repeat;
+background-size:50% 60%;
+}
+
+/* Estilo del btn de logout */
+/*.capa_contenido > div:nth-child(4) .contenido_movible > div:nth-child(2) > .salir_intranet{
+
+}*/
+
+.capa_contenido > div:nth-child(5){/*Pie de página*/
+background-color:#F8F8F8;
+background-image:url('../images/fondo_pie_pagina.png');
+background-position:right;
+background-repeat:no-repeat;
+background-size:4% 100%;
+border-top: solid 1px #aeaeae;
+bottom:0px;
+color:rgba(0, 0, 0, 0.6);
+font-weight:bold;
+height:50px;
+line-height:50px;
+position:absolute;
+width:100%;
+}
+
+/*******************************************************/
+/*Estilo de la tabla que contiene los campos del logueo*/
+/*******************************************************/
+.tabla_logueo{
+background:#F8F8F8;
+border: solid 1px #aeaeae;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+color:#000000;
+font-size:12px;
+font-weight:bold;
+-moz-box-shadow:0px 1px 8px 3px rgba(0,0,0,0.3);
+-webkit-box-shadow:0px 1px 8px 3px rgba(0,0,0,0.3);
+box-shadow:0px 1px 8px 3px rgba(0,0,0,0.3);
+}
+
+.tabla_logueo tr:nth-child(2) td:nth-child(1){
+background:url('../images/fondo_logueo.png');
+background-size:100% 100%;
+}
+
+.tabla_logueo input[type="text"], .tabla_logueo input[type="password"]{
+border: solid 1px #aeaeae;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+color:#292929;
+font-size:14px;
+font-weight:bold;
+height:35px;
+text-indent:15px;
+width:350px;
+}
+
+.tabla_logueo input[type="text"]:hover, .tabla_logueo input[type="password"]:hover{
+background-color:#ffffff;
+-moz-box-shadow:inset 0 0 6px rgba(0,0,0,0.7);
+-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.7);
+box-shadow:inset 0 0 6px rgba(0,0,0,0.7);
+}
+
+.tabla_logueo input[type="text"]:focus, .tabla_logueo input[type="password"]:focus{
+border:1px solid rgba(102,175,233,1);
+-moz-box-shadow: 0px 0px 10px rgba(102,175,233,0.8);
+-webkit-box-shadow: 0px 0px 10px rgba(102,175,233,0.8);
+box-shadow: 0px 0px 10px rgba(102,175,233,0.8); 
+}
+
+.tabla_logueo #inicio_sesion{
+/*background-color: rgba(31, 177, 20, 1);*/
+background-color: rgba(36, 123, 29, 1);
+border: solid 1px #1a5e15;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+color:#ffffff;
+font-size:14px;
+font-weight:bold;
+height:45px;
+opacity:0.8;
+width:358px;
+}
+
+.tabla_logueo #cambio_clave{
+background-color: rgba(210, 50, 45, 1);
+border: solid 1px #AC2925;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+color:#ffffff;
+font-size:14px;
+font-weight:bold;
+height:45px;
+opacity:0.8;
+width:358px;
+}
+
+.tabla_logueo input[type="button"]:hover{
+background-color: rgba(210, 50, 45, 1);
+-moz-box-shadow:inset 0 0 8px rgba(0,0,0,0.8);
+-webkit-box-shadow:inset 0 0 8px rgba(0,0,0,0.8);
+box-shadow:inset 0 0 8px rgba(0,0,0,0.8);
+}
+
+.titulo_inicio_sesion{
+font-size:15px;
+padding-right:25px;
+}
+
+/***************************/
+/*Estilo de los placeholder*/
+/***************************/
+::-webkit-input-placeholder {
+color:black;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+color:black;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+color:black;
+}
+
+:-ms-input-placeholder {  
+color:black;
+}
+
+/**************************/
+/* Estilo de los tooltips */
+/**************************/
+.ui-tooltip, .arrow:after{
+background: #000000;
+border: 1px solid white;
+}
+
+.ui-tooltip {
+padding: 8px 18px;
+color: white;
+border-radius: 20px;
+font: bold 9px "Helvetica Neue", Sans-Serif;
+text-transform: uppercase;
+box-shadow: 0 0 7px black;
+}
+
+.arrow {
+width: 70px;
+height: 16px;
+overflow: hidden;
+position: absolute;
+left: 50%;
+margin-left: -35px;
+bottom: -16px;
+}
+
+.arrow.top {
+top: -16px;
+bottom: auto;
+}

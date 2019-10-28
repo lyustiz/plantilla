@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 define('TAB',   '    '); 
 
-class ModelGenerator
+class Format
 {
 
     public function __construct($tables)

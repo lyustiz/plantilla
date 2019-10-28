@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudGenerate\Meta;
 use App\Http\Controllers\CrudGenerate\ModelGenerator;
 use App\Http\Controllers\CrudGenerate\ControllerGenerator;
 use App\Http\Controllers\CrudGenerate\ViewGenerator;
+use App\Http\Controllers\CrudGenerate\RouteGenerator;
 
 class CrudGenerate
 {
@@ -31,32 +32,43 @@ class CrudGenerate
     {
         $this->tables = json_decode(json_encode($this->tables), FALSE);
 
-        $this->modelGenerate();
+        $models      = $this->modelGenerate();
 
-        $this->controllerGenerate();
+        $controllers = $this->controllerGenerate();
 
-        $this->viewGenerate();
+        $views       = $this->viewGenerate();
+
+        $routes       = $this->routeGenerate();
+
+        return compact('models', 'controllers', 'views', 'routes');
     }
 
     public function modelGenerate()
     {
         $modelGenerator = new ModelGenerator($this->tables);
 
-        $modelGenerator->generate();
+        return $modelGenerator->generate();
     }
 
     public function controllerGenerate()
     {
         $controllerGenerator = new ControllerGenerator($this->tables);
 
-        $controllerGenerator->generate();
+        return $controllerGenerator->generate();
     }
 
     public function viewGenerate()
     {
         $viewGenerator = new ViewGenerator($this->tables);
 
-        $viewGenerator->generate(); 
+        return $viewGenerator->generate(); 
+    }
+
+    public function routeGenerate()
+    {
+        $routeGenerator = new RouteGenerator($this->tables);
+
+        return $routeGenerator->generate(); 
     }
 
     public function setConnection($ConnectionName)
@@ -75,6 +87,8 @@ class CrudGenerate
 
     public function getSchemas()
     {
+        $schemas = [];
+
         return $this->meta->getSchemas();
     }
 

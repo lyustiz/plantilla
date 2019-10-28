@@ -49,6 +49,8 @@ class ModelGenerator
 
     public function generate()
     {
+        $models = [];
+        
         foreach ($this->tables as $tableName => $table) 
         {
             $exitCode = $this->callMakeModel($table);
@@ -61,7 +63,10 @@ class ModelGenerator
             $definition = $this->definition($tableName, $table);
             
             $this->compile($table, $definition);
+
+            $models[$tableName] = $this->modelPath . $table->className . '.php';
         }
+        return $models;
     }
 
     public function callMakeModel($table)
@@ -89,7 +94,7 @@ class ModelGenerator
         $hiddenCols  = $this->getHiddenCols();
 
         $constraints = $this->getConstraints($table);
-
+        
         return str_replace(
             [ '{{tableName}}', '{{pkColumn}}', '{{createdAt}}', '{{updatedAt}}', '{{showCols}}', '{{hiddenCols}}', '{{Constraints}}' ],
             [ $tableName, $primaryKey, $this->createdAt, $this->updatedAt, $showCols, $hiddenCols, $constraints ],
@@ -155,7 +160,7 @@ class ModelGenerator
             file_get_contents(app_path($this->modelPath . $table->className . '.php'))
         );
 
-        file_put_contents(
+        return file_put_contents(
             app_path($this->modelPath . $table->className . '.php'),
             $compiled
         );

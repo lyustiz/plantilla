@@ -1,9 +1,11 @@
 <template>
 
     <v-tooltip bottom>
-        <v-btn slot="activator" fab dark small color="success" @click="insItem()" >
-            <v-icon>add</v-icon>
-        </v-btn>
+        <template v-slot:activator="{ on }">
+            <v-btn fab dark small color="success" v-on="on" @click="insItem()" >
+                <v-icon>add</v-icon>
+            </v-btn>
+        </template>
         <span>{{ mensaje }}</span>
     </v-tooltip>
 

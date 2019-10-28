@@ -30,27 +30,32 @@ class Meta
 
     public function setTablesMetadata()
     {
-        foreach ($this->tableObjects as $tableObject) {
-            
-            $tablename    = $this->getTableName($tableObject->getName());
+        $tables = [];
 
-            $className    = Str::studly($tablename);
+        if($this->tableObjects != [])
+        {
+            foreach ($this->tableObjects as $tableObject) {
+                
+                $tablename    = $this->getTableName($tableObject->getName());
 
-            $instanceName = Str::camel($tablename);
+                $className    = Str::studly($tablename);
 
-            $columns      = $this->getColumnArray($tableObject->getColumns());
-    
-            $primaryKey   = $this->getPrimaryKey($tableObject);
+                $instanceName = Str::camel($tablename);
 
-            $foreingKeys  = $this->getForeignKeys($tableObject);
-            
-            $tables[$tablename] = [
-                    'className'     => $className,
-                    'instanceName'  => $instanceName,
-                    'columns'       => $columns,
-                    'primaryKey'    => $primaryKey,
-                    'foreignKeys'   => $foreingKeys
-            ];
+                $columns      = $this->getColumnArray($tableObject->getColumns());
+        
+                $primaryKey   = $this->getPrimaryKey($tableObject);
+
+                $foreingKeys  = $this->getForeignKeys($tableObject);
+                
+                $tables[$tablename] = [
+                        'className'     => $className,
+                        'instanceName'  => $instanceName,
+                        'columns'       => $columns,
+                        'primaryKey'    => $primaryKey,
+                        'foreignKeys'   => $foreingKeys
+                ];
+            }
         }
         return $tables;
     }
@@ -75,9 +80,12 @@ class Meta
 
     public function getTableName($tableFullName)
     {
-        return strtolower(
-            substr($tableFullName, strpos($tableFullName, '.') + 1)
-        );
+        if(strrpos($tableFullName, '.'))
+        {
+            return strtolower(substr($tableFullName, strpos($tableFullName, '.') + 1));
+        }
+    
+        return $tableFullName;
     }
 
 
@@ -91,12 +99,15 @@ class Meta
         {
             $colsAttr = $this->getColumnsAttributes($columnObject);
 
+            $labelName = $this->labelName($colsAttr['name']);
+
             $columns[$colsAttr['name']] = [
                 'type'      => $colsAttr['type'],
                 'notnull'   => $colsAttr['notnull'],
                 'length'    => $colsAttr['length'],
                 'precision' => $colsAttr['precision'],
-                'comment'   => $colsAttr['comment']
+                'comment'   => $colsAttr['comment'],
+                'labelName' => $labelName
             ];
         }
 
@@ -117,9 +128,11 @@ class Meta
 
     public function getPrimaryKey($tableObject)
     {
-        return  $this->schemaManager
-                ->listTableIndexes($tableObject->getName())['primary']
-                ->getColumns()[0];
+        $indexes = $this->schemaManager->listTableIndexes($tableObject->getName());
+
+        return  (isset($indexes['primary'])) ? 
+                $indexes['primary']->getColumns()[0] : 
+                [];
     }
 
     public function getForeignKeys($tableObject)
@@ -182,5 +195,17 @@ class Meta
             }
         }
         return (object)$array;
+    }
+
+    protected function labelName($columnName)
+    {
+        $fieldName =  str_replace($this->getPrefix($columnName) . '_', null, $columnName);
+       
+        return ucwords(str_replace('_', ' ', $fieldName));
+    }
+
+    public function getPrefix($columnName)
+    {
+        return substr($columnName, 0, 2);
     }
 }

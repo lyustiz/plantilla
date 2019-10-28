@@ -1,0 +1,162 @@
+<template>
+<div>
+
+    <form-container :titulo="titulo" :head-color="$App.theme.headForm">
+
+        <v-form ref="form" v-model="valido" lazy-validation>
+
+        <v-layout wrap>
+                 
+        <v-flex xs12 >
+            <v-text-field
+                :rules="rules.required"
+                v-model="form.id_status"
+                label="Status"
+                placeholder="Indique Status"
+            ></v-text-field>
+        </v-flex>
+                  
+        <v-flex xs12 >
+            <v-text-field
+                :rules="rules.required"
+                v-model="form.id_usuario"
+                label="Usuario"
+                placeholder="Indique Usuario"
+            ></v-text-field>
+        </v-flex>
+                 
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_creado"
+                full-width
+                min-width="290px"
+                readonly
+            >
+                <v-text-field
+                slot="activator"
+                v-model="dates.fe_creado"
+                :rules="rules.etapaCo"
+                label="Fecha Corresponsal"
+                prepend-icon="event"
+                readonly
+                required
+                ></v-text-field>
+
+                <v-date-picker 
+                    v-model="form.fe_creado" 
+                    locale="es"
+                    @input="dates.fe_creado = formatDate( form.fe_creado )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>
+
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_actualizado"
+                full-width
+                min-width="290px"
+                readonly
+            >
+                <v-text-field
+                slot="activator"
+                v-model="dates.fe_actualizado"
+                :rules="rules.etapaCo"
+                label="Fecha Corresponsal"
+                prepend-icon="event"
+                readonly
+                required
+                ></v-text-field>
+
+                <v-date-picker 
+                    v-model="form.fe_actualizado" 
+                    locale="es"
+                    @input="dates.fe_actualizado = formatDate( form.fe_actualizado )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>
+         
+        <v-flex xs12 sm6>
+            <v-select
+            :items="list.status"
+            item-text="nb_status"
+            item-value="id_status"
+            v-model="form.id_status"
+            :rules="rules.select"
+            label="Status"
+            autocomplete
+            required
+            ></v-select>
+        </v-flex>
+                  
+        <v-flex xs12 sm6>
+            <v-select
+            :items="list.usuario"
+            item-text="nb_usuario"
+            item-value="id_usuario"
+            v-model="form.id_usuario"
+            :rules="rules.select"
+            label="Usuario"
+            autocomplete
+            required
+            ></v-select>
+        </v-flex>
+         
+        </v-layout>
+
+     </v-form>
+
+    <template slot="buttons">
+        <form-buttons
+            @update="update()"
+            @store="store()"
+            @clear="clear()"
+            @cancel="cancel()"
+            :btnAccion="btnAccion"
+            :valido="valido"
+        ></form-buttons>
+    </template>
+
+    </form-container>
+
+    <pre v-if="$App.debug">{{ $props }}</pre>
+
+</div>
+</template>
+
+<script>
+import formHelper from '~/mixins/Appform';
+export default {
+    mixins: [formHelper],
+    data(){
+        return{
+            tabla: 'tipo_visitante',
+            form:{
+                id_tipo_visitante,
+				id_status,
+				id_usuario,
+				nb_tipo_visitante,
+				fe_creado,
+				fe_actualizado,
+            },
+            listas:{
+                status: 	 [],
+	 	 	 	usuario: 	 [],
+            },
+        }
+    },
+    methods:
+    {
+        update()
+        {
+        },
+        store()
+        {
+        }
+    }
+}
+</script>
+
+<style>
+</style>

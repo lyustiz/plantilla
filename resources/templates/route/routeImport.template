@@ -1,0 +1,2 @@
+import {{className}}  from '../pages/{{instanceName}}/{{className}}.vue';
+import {{className}}Form  from '../pages/{{instanceName}}/{{className}}form.vue';

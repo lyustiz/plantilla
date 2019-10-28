@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+	<title>Registro Visitantes</title>
+
+	<link rel="icon" type="image/png" href="http://127.0.0.1:3000/assets/modules/aplicaciones/images/ico.png">
+
+	
+	<!-- meta tags requeridos-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="C_registroVisita_data/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="C_registroVisita_data/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="../colorbox.css" rel="stylesheet" type="text/css">
+<link href="C_registroVisita_data/estilo_aplicaciones.css" rel="stylesheet" type="text/css">
+<link href="C_registroVisita_data/V_registroVisita.css" rel="stylesheet" type="text/css">
+<link href="C_registroVisita_data/select2.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="C_registroVisita_data/jquery-3.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/tether.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/bootstrap.js"></script>
+<script type="text/javascript" src="../jquery_004.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/fn_aplicaciones.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/select2.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/V_registroVisita.js"></script>
+<link href="C_registroVisita_data/formValidation.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="C_registroVisita_data/formValidation.js"></script>
+<script type="text/javascript" src="C_registroVisita_data/es_ES.js"></script>
+
+	
+</head>
+<body>
+
+
+
+<div class="container">
+		
+		<form action="http://127.0.0.1:3000/index.php/#" name="frm_registroVisitantes" id="frm_registroVisitantes" align="center" class="form-group col-sm-12" autocomplete="on" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+		
+		<h5 class="text-info">Registro de Visitantes:</h5>
+		
+		<fieldset class="row form-group">
+			
+			<div class="col form-container col-sm-10">
+			
+				<div class="form-group row"><label for="Cedula" class="col-sm-2 form-control-label">C.I./Pasaporte</label><div class="col-sm-10"> <select name="slt_nacionalidad" id="slt_nacionalidad" label="Edad" class="pull-left col-sm-1 form-control form-control-sm"> <option value="" selected="selected"></option> <option value="V">V</option> <option value="E">E</option> </select> <input name="txt_cedula" id="txt_cedula" label="Nombre" placeholder="Indique Cedula" class="form-control form-control-sm pull-left col-sm-9" type="text"> <button name="btn_buscar" type="button" id="btn_buscar" value="&lt;i class='fa fa-search'&gt;&lt;/i&gt; Buscar" class="pull-left col-sm-2 btn btn-sm btn-primary" title="Buscar Visitante"><i class="fa fa-search"></i> Buscar</button> </div></div><div class="form-group row"><label for="Nombre" class="col-sm-2 form-control-label">Nombre</label><div class="col-sm-10"> <input name="txt_nombres_visitante" value="vsd" id="txt_nombres_visitante" placeholder="Indique Nombre" class="form-control form-control-sm pull-left col-sm-6" type="text"> <input name="txt_apellidos_visitante" value="vdss" id="txt_apellidos_visitante" placeholder="Indique Apellido" class="form-control form-control-sm pull-left col-sm-6" type="text"> </div></div><div class="form-group row"><label for="Empresa" class="col-sm-2 form-control-label">Empresa</label><div class="col-sm-10"> <select name="slt_empresa" id="slt_empresa" class="pull-left col-sm-11 form-control form-control-sm"> <option value="" selected="selected">Seleccione...</option> </select> <button name="btn_add_empresa" type="button" id="btn_add_empresa" value="&lt;i class='fa fa-plus'&gt;&lt;/i&gt;" class="pull-left btn_add_item btn btn-sm btn-primary" title="Agregar Empresa" url_slt="C_registroEmpresa" url_reload="C_registroVisita/reload_slt_empresas" id_slt="slt_empresa" nb_item="Empresa"><i class="fa fa-plus"></i></button> </div></div><div class="form-group row"><label for="Tipo Visitante" class="col-sm-2 form-control-label">Tipo Visitante</label><div class="col-sm-10"> <select name="slt_tipo_visitante" id="slt_tipo_visitante" class="pull-left col-sm-11 form-control form-control-sm"> <option value="" selected="selected">Seleccione...</option> </select> <button name="btn_add_tipo" type="button" id="btn_add_tipo" value="&lt;i class='fa fa-plus'&gt;&lt;/i&gt;" class="pull-left btn_add_item btn btn-sm btn-primary" title="Agregar Tipo Visitante" url_slt="C_tipoVisitante" url_reload="C_registroVisita/reload_slt_tipoVisitante" id_slt="slt_tipo_visitante" nb_item="Tipo Visitante"><i class="fa fa-plus"></i></button> </div></div><div class="form-group row"><label for="txt_cargo" class="col-sm-2 form-control-label">Cargo</label><div class="col-sm-10"><input name="txt_cargo" value="csd" id="txt_cargo" label="Cargo" placeholder="Indique Cargo" class="form-control form-control-sm col-sm-12" type="text"> </div></div><div class="form-group row"><label for="txt_telefono" class="col-sm-2 form-control-label">Telefono</label><div class="col-sm-10"><input name="txt_telefono" id="txt_telefono" label="Telefono" class="form-control form-control-sm col-sm-12" placeholder="Indique Telefono Ej.0212-000000" type="text"> </div></div><div class="form-group row"><label for="Motivo" class="col-sm-2 form-control-label">Motivo</label><div class="col-sm-10"> <select name="slt_motivo" id="slt_motivo" class="pull-left col-sm-11 form-control form-control-sm"> <option value="" selected="selected">Seleccione...</option> </select> <button name="btn_add_motivo" type="button" id="btn_add_motivo" value="&lt;i class='fa fa-plus'&gt;&lt;/i&gt;" class="pull-left btn_add_item btn btn-sm btn-primary" title="Agregar Motivo Visita" url_slt="C_motivoVisita" url_reload="C_registroVisita/reload_slt_motivos" id_slt="slt_motivo" nb_item="Motivo Visita"><i class="fa fa-plus"></i></button> </div></div><div class="form-group row"><label for="txa_observaciones" class="col-sm-2 form-control-label">Observaciones</label><div class="col-sm-10"><textarea name="txa_observaciones" cols="4" rows="2" id="txa_observaciones" label="Observaciones" class="form-control form-control-sm col-sm-12" placeholder="Indique una Observacion..."></textarea> </div></div>				
+			</div>	
+			
+			<div class="col form-container col-sm-2">
+			
+				<div id="foto_visitante" class="justify-content-center align-items-center foto_container ">
+				 
+					<img class="foto_visita" id="foto_visita" src="C_registroVisita_data/sf.htm" poseefoto="0" alt="">					<input name="hdn_src_foto" value="" id="hdn_src_foto" type="hidden"> <input name="hdn_upd_foto" value="" id="hdn_upd_foto" type="hidden"> 				
+				</div>
+				
+			</div>
+			
+		</fieldset>		
+			
+		<fieldset class="row form-group">
+
+			<div class="col form-container col-sm-10">	
+
+				
+				<div class="form-group row"><label for="slt_nb_empleado" class="col-sm-2 form-control-label">Empleado</label><div class="col-sm-10"><select name="slt_nb_empleado" id="slt_nb_empleado" label="Empleado" class="col-sm-12 form-control form-control-sm"> <option value="" selected="selected">Seleccione...</option> </select> </div></div><div class="form-group row"><label for="slt_UnidOrg" class="col-sm-2 form-control-label">Ubicacion</label><div class="col-sm-10"><select name="slt_UnidOrg" id="slt_UnidOrg" label="Ubicacion" class="col-sm-12 form-control form-control-sm"> <option value="" selected="selected">Seleccione...</option> </select> </div></div><div class="form-group row"><label for="Nombre" class="col-sm-2 form-control-label">EXT/Piso</label><div class="col-sm-10"> <input name="txt_extension" id="txt_extension" class="form-control form-control-sm pull-left col-sm-3" placeholder="Extension" type="text"> <input name="txt_piso" id="txt_piso" placeholder="Piso" class="form-control form-control-sm pull-left col-sm-3" type="text"> </div></div><div class="form-group row"><label for="Nombre" class="col-sm-2 form-control-label">Carnet</label><div class="col-sm-10"> <input name="txt_nu_carnet" id="txt_nu_carnet" class="form-control form-control-sm pull-left col-sm-3" placeholder="Nro. de Carnet" type="text"> <div class="badge badge-info pull-left"><i class="fa fa-id-badge fa-2x"></i></div></div></div><input name="hdn_id_visitante" value="" id="hdn_id_visitante" type="hidden"> <div class="form-group row"><label for="Acciones" class="col-sm-2 form-control-label"> </label><div class="col-sm-10"> <button name="btn_registrar" type="button" id="btn_registrar" value="&lt;i class='fa fa-sign-in fa-lg'&gt;&lt;/i&gt; Registrar" class="btn-success pull-left col-sm-2 frm_button btn btn-sm btn-primary" disabled="disabled" title="Registra la Visita"><i class="fa fa-sign-in fa-lg"></i> Registrar</button> <button name="btn_limpiar" type="button" id="btn_limpiar" value="&lt;i class='fa fa-refresh fa-lg'&gt;&lt;/i&gt; Limpiar" class="btn-warning pull-left col-sm-2 frm_button btn btn-sm btn-primary" title="Resetear el formulario"><i class="fa fa-refresh fa-lg"></i> Limpiar</button> </div></div>			 
+				
+
+			</div>
+			
+			<div class="col form-container col-sm-2">
+			
+				<div id="foto_empleado" class="justify-content-center align-items-center foto_container ">
+				
+					<img class="foto_empleado" id="foto_empleado" src="C_registroVisita_data/sf.htm" alt="">				
+				</div>
+				
+			</div>
+			
+		</fieldset>
+
+		</form>		
+</div>
+
+
+
+<div class="modal fade" id="foto_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header bg-info text-white">
+	<h5 class="modal-title">Capturar Foto Visitante</h5>
+	<button id="btn_cerrar" type="button" class="close " data-dismiss="modal" aria-label="Close">
+		<span class="fa fa-times text-danger" aria-hidden="true"></span>
+	</button>
+  </div>
+  <div class="modal-body">
+  
+      <div class="container">
+			
+			<div class="row video_container justify-content-center" align="center">
+
+				<video id="video"></video>
+				
+			</div>	
+				
+			<div class="row camara_container justify-content-center" align="center">
+
+				<img class="foto_camara" id="foto_camara" src="C_registroVisita_data/sf.htm" alt="">				<canvas id="canvas"></canvas>
+				
+			</div>	
+			
+			
+			
+		</div>	
+
+  
+  </div>
+  
+  <div class="modal-footer">
+  
+		<div class="btn-group">
+
+	
+			<button id="btnFoto" type="button" class="btn btn-primary btn-lg">
+				<i class="fa fa-camera" aria-hidden="true"></i>
+			</button>
+			<button id="btnSalir" type="button" class="btn btn-success btn-lg">
+				<i class="fa fa-sign-out" aria-hidden="true"></i> 
+			</button>
+			
+		</div>	
+ 
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div><div id="cboxClose" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div><div id="background_progressbar" class="modal fade" data-backdrop="static" data-show="true">						<div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated"></div>					  </div><div class="modal fade" id="dialogo" tabindex="-1" role="dialog" aria-hidden="true">					  <div class="modal-dialog" role="document">						<div class="modal-content">						  <div class="modal-header bg-info text-white">							<h5 class="modal-title">title</h5>						  </div>						  <div class="modal-body">						  ...						  </div>						  <div class="modal-footer">							...						  </div>						</div>					  </div>					</div></body></html>
+

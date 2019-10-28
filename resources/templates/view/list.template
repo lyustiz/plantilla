@@ -71,7 +71,7 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import {{className}}Form  from '{{className}}Form';
+import {{className}}Form  from './{{className}}Form';
 export default {
     mixins:     [ listHelper],
     components: { '{{slugName}}-form': {{className}}Form },
@@ -92,7 +92,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/{{instanceName}}')
+           axios.get('api/v1/{{instanceName}}')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

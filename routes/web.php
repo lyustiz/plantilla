@@ -1,5 +1,9 @@
 <?php
 
+
+Route::post('/crud', 'crud@generate')->name('generate');
+
+
 Route::get('/', function () {
     return view('home');
 });

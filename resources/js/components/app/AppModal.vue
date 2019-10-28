@@ -17,7 +17,7 @@
 
         <v-card-text>
 
-              <slot></slot>
+            <slot></slot>
 
         </v-card-text>
 

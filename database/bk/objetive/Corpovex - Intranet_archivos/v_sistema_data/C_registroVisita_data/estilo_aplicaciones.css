@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+.table.collapse.show {
+    display: table !important;
+}
+table.collapse.show {
+    display: table !important;
+}
+
+.green{ 	background-color: #61BD4F !important;	}
+.yellow{	background-color: #D9B51C !important; 	}
+.orange{	background-color: #FFAB4A !important; 	}
+.red{		background-color: #EB5A46 !important;	}
+.purple{	background-color: #C377E0 !important; 	}
+.blue{		background-color: #0079BF !important; 	}
+.sky{		background-color: #00C2E0 !important; 	}
+.lime{		background-color: #51E898 !important; 	}
+.pink{		background-color: #FF80CE !important; 	}
+.black{		background-color: #4d4d4d !important; 	}
+
+
+.tx_green{ 	color: #61BD4F !important; }  
+.tx_yellow{	color: #D9B51C !important; }
+.tx_orange{	color: #FFAB4A !important; }
+.tx_red{	color: #EB5A46 !important; }
+.tx_green{ 	color: #61BD4F !important; }
+.tx_red{	color: #EB5A46 !important; }
+.tx_white{	color: white !important; }
+.tx_black{	color: black !important; }
+.tx_sky{	color: #00C2E0 !important; }
+.tx_blue{	color: #0079BF !important; }
+
+
+.navbar{
+	margin-top: 3px;
+	border-radius: 5px;
+}
+
+.cont{
+	padding: 1.25rem;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	border: 1px solid #eee;
+	border-radius: .25rem;
+	width: 100%;
+}
+
+.cont-resaltado{
+	padding: 1.25rem;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	border: 1px solid #eee;
+	border-left-width: .25rem;
+	border-radius: .25rem;
+	border-left-color: #f0ad4e;
+}
+
+.form-container{
+	margin-top: 0.5rem;
+	border: 1px solid #eee;
+	border-radius: .25rem;
+	padding: 0.5rem;
+}
+
+
+
+#titulo{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.btn{
+	cursor: pointer;
+}
+.btn_ctm{ //botones sin boottrap
+	display: block;
+}
+.btn_ctm:hover{
+	display: block;
+	cursor: pointer;
+}
+
+
+ .btn-group .form-control-feedback {
+			top: 0 !important;
+			right: -30px;
+}
+/*
+.inputGroupContainer .form-control-feedback,
+.selectContainer .form-control-feedback {
+	top: 0;
+	right: -15px !important;
+}
+.form-control-feedback {
+	top: 35px !important;
+	right: 0px;
+}*/

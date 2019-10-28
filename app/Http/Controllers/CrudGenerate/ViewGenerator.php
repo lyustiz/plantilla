@@ -42,43 +42,58 @@ class ViewGenerator
 
     public function generate()
     {
+        $views = [];
+
         foreach ($this->tables as $tableName => $table) 
         {
             $definition = $this->definition($tableName, $table);
 
-            $this->compile($definition, $tableName, $table);
+            $viewsCompiled = $this->compile($definition, $tableName, $table);
+
+            $views[$tableName] = $viewsCompiled;
         }
+
+        return $views;
     }
 
     public function definition($tableName, $table)
     {
         $formFields = null;
         
-        foreach ($table->columns as $columnName => $column) 
+        foreach ($table->columns as $columnName => $column)
         {
-            $formFields      .= $this->fieldTemplates($columnName, $column);
+            $columnPrefix = $this->getPrefix($columnName);
+
+            if($columnPrefix . '_' . $tableName != $columnName)
+            {
+                $formFields  .= $this->fieldTemplates($columnName, $column);
+            }
             
             $tableColumns[]   = $columnName;
         }
 
-        $formFields  .= $this->selectFields($table->foreignKeys);
+        $formFields .= $this->selectFields($table->foreignKeys);
 
         return $formFields;
     }
 
     public function compile($definition, $tableName, $table)
     {
-        $this->createDirectory($table->className);
+        $this->createDirectory($table->instanceName);
 
         //list
+        $listPath = base_path( $this->viewPath . $table->className . '/'. $table->className . ".vue");
+
         $listGenerate =  file_put_contents(
-            base_path( $this->viewPath . $table->className . '/'. $table->className . ".vue"),
+            $listPath,
             $this->compileList($definition, $tableName, $table)
         );
 
         //form
+        $formPath = base_path( $this->viewPath . $table->className. '/' . $table->className . "Form.vue");
+
         $formGenerate = file_put_contents(
-            base_path( $this->viewPath . $table->className. '/' . $table->className . "Form.vue"),
+            $formPath,
             $this->compileForm($definition, $tableName, $table)
         );
 
@@ -86,6 +101,8 @@ class ViewGenerator
         {
             dd('Error al generar list/form de la tabla '. $tableName );
         };
+
+        return ['list' =>$listPath, 'form' =>$formPath]; 
     }
 
     protected function compileList($definition, $tableName, $table)
@@ -166,35 +183,33 @@ class ViewGenerator
 
     public function fieldTemplates($columnName, $column)
     {
-        $columnPrefix = $this->getPrefix($columnName);
-
         $fieldName  = $this->fieldName($columnName);
-       
+               
         switch (true) 
         {
             case in_array( $column->type, [ 'string', 'text' ] ):
 
-                return $this->fieldTemplate('text', $columnName, $fieldName);
+                return $this->fieldTemplate('text', $columnName, $column->labelName);
 
             case $column->type == 'datetime':
 
-                return $this->fieldTemplate('date', $columnName, $fieldName);
+                return $this->fieldTemplate('date', $columnName, $column->labelName);
     
             case $column->type == 'integer':
 
-                return $this->fieldTemplate('text', $columnName, $fieldName);
+                return $this->fieldTemplate('text', $columnName, $column->labelName);
         
             case $column->type == 'decimal':
 
-                return $this->fieldTemplate('text', $columnName, $fieldName);
+                return $this->fieldTemplate('text', $columnName, $column->labelName);
 
             case $column->type == 'boolean':
 
-                return $this->fieldTemplate('checkbox', $columnName, $fieldName);
+                return $this->fieldTemplate('checkbox', $columnName, $column->labelName);
             
             default:
 
-                return $this->fieldTemplate('text', $columnName, $fieldName);
+                return $this->fieldTemplate('text', $columnName, $column->labelName);
        }
     }
 
@@ -212,6 +227,8 @@ class ViewGenerator
     public function selectFields($foreingnKeys)
     {
         $selectFields = null;
+
+        $this->foreignTables = [];
 
         if($foreingnKeys != [])
         {
@@ -237,7 +254,7 @@ class ViewGenerator
 
         foreach ($columns as $columnName => $column) 
         {
-            $formColumns[] = $columnName . ',';
+            $formColumns[] = $columnName . ": \t,";
         }
 
         return implode(  PHP_EOL ."\t\t\t\t" , $formColumns ) ;
@@ -254,7 +271,7 @@ class ViewGenerator
             }
         }
 
-        return implode(  PHP_EOL ."\t \t \t \t \t \t \t'" , $formatTable ) ;
+        return implode(  PHP_EOL ."\t \t \t \t" , $formatTable ) ;
     }
 
     public function getPrefix($columnName)
@@ -270,9 +287,9 @@ class ViewGenerator
     }
 
     //global
-    public function createDirectory($className)
+    public function createDirectory($instanceName)
     {
-        if (! is_dir($directory = base_path( $this->viewPath . $className . '/' ))) {
+        if (! is_dir($directory = base_path( $this->viewPath . $instanceName . '/' ))) {
             mkdir($directory, 0755, true);
         }
 

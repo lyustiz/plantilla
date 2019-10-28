@@ -5,7 +5,9 @@ return [
     'paths' => [
         'models'      => 'Models/',
         'controllers' => 'Http/Controllers/',
-        'views'       => 'resources/assets/js/pages/',
+        'views'       => 'resources/js/pages/',
+        'routes'      => 'resources/js/router/index.js',
+        'apis'        => 'routes/api.php',
         'templates'   => 'resources/templates/'
     ],
 
