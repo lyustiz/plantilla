@@ -30,12 +30,11 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
-
             tabla: '{{table}}',
             {{pickers}},
             form:{

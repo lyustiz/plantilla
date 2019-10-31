@@ -33,11 +33,11 @@ class ViewGenerator
 
         $cols  = $conf['cols'];
 
-        $this->viewPath       = $paths['views'];
+        $this->viewPath     = $paths['views'];
 
-        $this->templatePath   = $paths['templates'] . 'view/';
+        $this->templatePath = $paths['templates'] . 'view/';
 
-        $this->hiddenCols     = $cols['hiddenCols'];
+        $this->hiddenCols   = $cols['hiddenCols'];
     }
 
     public function generate()

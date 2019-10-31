@@ -14,7 +14,6 @@ class Meta
     public $tableObjects;
 
     public $tables;
-
     
     public function __construct($connection)
     {
@@ -49,11 +48,11 @@ class Meta
                 $foreingKeys  = $this->getForeignKeys($tableObject);
                 
                 $tables[$tablename] = [
-                        'className'     => $className,
-                        'instanceName'  => $instanceName,
-                        'columns'       => $columns,
-                        'primaryKey'    => $primaryKey,
-                        'foreignKeys'   => $foreingKeys
+                    'className'     => $className,
+                    'instanceName'  => $instanceName,
+                    'columns'       => $columns,
+                    'primaryKey'    => $primaryKey,
+                    'foreignKeys'   => $foreingKeys
                 ];
             }
         }
