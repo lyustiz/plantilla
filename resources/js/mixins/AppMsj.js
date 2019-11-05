@@ -14,7 +14,7 @@ export default {
         },
         showError (error)
         {
-            console.log(error.response)
+            console.log('error', error.response)
 
             if(error.hasOwnProperty('response'))
             {
@@ -45,8 +45,9 @@ export default {
                     msj = 'Session invalida favor Ingresar nuevamente '
                     this.showMsjBar(msj, 'error')
                     setTimeout(() => {
-                        //window.location.href = '/login'
+                        window.location.href = '/login'
                     }, 2000);
+                    return false;
                 break;
 
                 case 429:
@@ -78,12 +79,12 @@ export default {
                 }
                 break;
             }
-
+                
                 this.showMsjBar( msj, 'error')
 
             }else
             {
-                this.showMsjBar(error, 'error')
+                this.showMsjBar(error, 'Error Desconocido')
             }
 
         },

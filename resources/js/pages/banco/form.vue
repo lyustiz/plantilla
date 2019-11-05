@@ -39,7 +39,7 @@
                     <v-select
                         label="Tipo de Banco"
                         v-model="form.id_tipo_banco"
-                        :items="['nacional', 'internacional' ]"
+                        :items="['nacional', 'internacional']"
                         :rules="rules.requerido"
                     ></v-select>
                 </v-flex>

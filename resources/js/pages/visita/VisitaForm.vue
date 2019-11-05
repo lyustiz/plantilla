@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_visitante"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_tipo_visitante"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_empresa"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_motivo"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_status"
@@ -52,7 +52,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_usuario"
@@ -61,7 +61,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_ced_empleado"
@@ -70,7 +70,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_cargo"
@@ -79,7 +79,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_observaciones"
@@ -88,7 +88,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_carnet"
@@ -101,19 +101,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_entrada"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_entrada"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_entrada"
+                        :rules="rules.etapaCo"
+                        label="Entrada"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_entrada" 
@@ -127,19 +128,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_salida"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_salida"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_salida"
+                        :rules="rules.etapaCo"
+                        label="Salida"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_salida" 
@@ -153,19 +155,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_creado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_creado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_creado"
+                        :rules="rules.etapaCo"
+                        label="Creado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_creado" 
@@ -179,19 +182,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_actualizado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_actualizado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_actualizado"
+                        :rules="rules.etapaCo"
+                        label="Actualizado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_actualizado" 
@@ -302,30 +306,36 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'visita',
-            form:{
-                id_visita,
-				id_visitante,
-				id_tipo_visitante,
-				id_empresa,
-				id_motivo,
-				id_status,
-				id_usuario,
-				nu_ced_empleado,
-				tx_cargo,
-				tx_observaciones,
-				nu_carnet,
-				fe_entrada,
-				fe_salida,
-				fe_creado,
-				fe_actualizado,
+            pickers:{
+                fe_entrada: 	 null,
+	 	 	 	fe_salida: 	 null,
+	 	 	 	fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
             },
-            listas:{
+            form:{
+                id_visita: 	null,
+				id_visitante: 	null,
+				id_tipo_visitante: 	null,
+				id_empresa: 	null,
+				id_motivo: 	null,
+				id_status: 	null,
+				id_usuario: 	null,
+				nu_ced_empleado: 	null,
+				tx_cargo: 	null,
+				tx_observaciones: 	null,
+				nu_carnet: 	null,
+				fe_entrada: 	null,
+				fe_salida: 	null,
+				fe_creado: 	null,
+				fe_actualizado: 	null,
+            },
+            list:{
                 visitante: 	 [],
 	 	 	 	tipoVisitante: 	 [],
 	 	 	 	empresa: 	 [],

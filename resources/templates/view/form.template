@@ -35,12 +35,14 @@ export default {
     mixins: [Appform],
     data(){
         return{
-            tabla: '{{table}}',
-            {{pickers}},
+            tabla: '{{tableName}}',
+            pickers:{
+                {{pickers}}
+            },
             form:{
                 {{tableField}}
             },
-            listas:{
+            list:{
                 {{foreignTables}}
             },
         }

@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_status"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_usuario"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_nombres"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_apellidos"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_cedula"
@@ -52,7 +52,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_nacionalidad"
@@ -61,7 +61,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_foto"
@@ -70,7 +70,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_cod_pais"
@@ -79,7 +79,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_telefono"
@@ -92,19 +92,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_creado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_creado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_creado"
+                        :rules="rules.etapaCo"
+                        label="Creado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_creado" 
@@ -118,19 +119,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_actualizado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_actualizado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_actualizado"
+                        :rules="rules.etapaCo"
+                        label="Actualizado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_actualizado" 
@@ -202,27 +204,31 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'visitante',
-            form:{
-                id_visitante,
-				id_status,
-				id_usuario,
-				tx_nombres,
-				tx_apellidos,
-				nu_cedula,
-				tx_nacionalidad,
-				tx_foto,
-				tx_cod_pais,
-				tx_telefono,
-				fe_creado,
-				fe_actualizado,
+            pickers:{
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
             },
-            listas:{
+            form:{
+                id_visitante: 	null,
+				id_status: 	null,
+				id_usuario: 	null,
+				tx_nombres: 	null,
+				tx_apellidos: 	null,
+				nu_cedula: 	null,
+				tx_nacionalidad: 	null,
+				tx_foto: 	null,
+				tx_cod_pais: 	null,
+				tx_telefono: 	null,
+				fe_creado: 	null,
+				fe_actualizado: 	null,
+            },
+            list:{
                 visitante: 	 [],
 	 	 	 	status: 	 [],
 	 	 	 	usuario: 	 [],

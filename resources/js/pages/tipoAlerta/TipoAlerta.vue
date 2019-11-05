@@ -79,10 +79,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import TipoAlertaForm  from 'TipoAlertaForm';
+import tipoAlertaForm  from './tipoAlertaForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'tipo-alerta-form': TipoAlertaForm },
+    components: { 'tipo-alerta-form': tipoAlertaForm },
     data () {
     return {
         titulo: 'TipoAlerta',
@@ -108,7 +108,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/tipoAlerta')
+           axios.get('api/v1/tipoAlerta')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

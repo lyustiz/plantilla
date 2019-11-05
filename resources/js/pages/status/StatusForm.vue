@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.in_grupo_status"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nb_grupo_status"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nb_status2"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_orden"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_orden2"
@@ -51,34 +51,88 @@
                 placeholder="Indique Orden2"
             ></v-text-field>
         </v-flex>
-                  
-        <v-flex xs12 >
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.fe_creado"
-                label="Creado"
-                placeholder="Indique Creado"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 >
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.fe_actualizado"
-                label="Actualizado"
-                placeholder="Indique Actualizado"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 >
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
-            ></v-text-field>
-        </v-flex>
                  
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_creado"
+                min-width="290px"
+                readonly
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_creado"
+                        :rules="rules.etapaCo"
+                        label="Creado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
+
+                <v-date-picker 
+                    v-model="form.fe_creado" 
+                    locale="es"
+                    @input="dates.fe_creado = formatDate( form.fe_creado )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>
+
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_actualizado"
+                min-width="290px"
+                readonly
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_actualizado"
+                        :rules="rules.etapaCo"
+                        label="Actualizado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
+
+                <v-date-picker 
+                    v-model="form.fe_actualizado" 
+                    locale="es"
+                    @input="dates.fe_actualizado = formatDate( form.fe_actualizado )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>
+
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.id_usuario"
+                min-width="290px"
+                readonly
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.id_usuario"
+                        :rules="rules.etapaCo"
+                        label="Usuario"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
+
+                <v-date-picker 
+                    v-model="form.id_usuario" 
+                    locale="es"
+                    @input="dates.id_usuario = formatDate( form.id_usuario )"
+                ></v-date-picker>
+            </v-menu>
+        </v-flex>
+
         </v-layout>
 
      </v-form>
@@ -102,25 +156,30 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'status',
-            form:{
-                id_status,
-				nb_status,
-				in_grupo_status,
-				nb_grupo_status,
-				nb_status2,
-				nu_orden,
-				nu_orden2,
-				fe_creado,
-				fe_actualizado,
-				id_usuario,
+            pickers:{
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+	 	 	 	id_usuario: 	 null,
             },
-            listas:{
+            form:{
+                id_status: 	null,
+				nb_status: 	null,
+				in_grupo_status: 	null,
+				nb_grupo_status: 	null,
+				nb_status2: 	null,
+				nu_orden: 	null,
+				nu_orden2: 	null,
+				fe_creado: 	null,
+				fe_actualizado: 	null,
+				id_usuario: 	null,
+            },
+            list:{
                 
             },
         }

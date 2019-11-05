@@ -78,10 +78,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import BitacoraForm  from './BitacoraForm';
+import bitacoraForm  from './bitacoraForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'bitacora-form': BitacoraForm },
+    components: { 'bitacora-form': bitacoraForm },
     data () {
     return {
         titulo: 'Bitacora',

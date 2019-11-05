@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_status"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_usuario"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.nu_nivel_alerta"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_accion"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_imagen"
@@ -56,19 +56,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_creado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_creado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_creado"
+                        :rules="rules.etapaCo"
+                        label="Creado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_creado" 
@@ -82,19 +83,20 @@
             <v-menu
                 ref="picker"
                 v-model="picker.fe_actualizado"
-                full-width
                 min-width="290px"
                 readonly
             >
-                <v-text-field
-                slot="activator"
-                v-model="dates.fe_actualizado"
-                :rules="rules.etapaCo"
-                label="Fecha Corresponsal"
-                prepend-icon="event"
-                readonly
-                required
-                ></v-text-field>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_actualizado"
+                        :rules="rules.etapaCo"
+                        label="Actualizado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
 
                 <v-date-picker 
                     v-model="form.fe_actualizado" 
@@ -153,24 +155,28 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'tipo_alerta',
-            form:{
-                id_tipo_alerta,
-				id_status,
-				id_usuario,
-				nb_tipo_alerta,
-				nu_nivel_alerta,
-				tx_accion,
-				tx_imagen,
-				fe_creado,
-				fe_actualizado,
+            pickers:{
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
             },
-            listas:{
+            form:{
+                id_tipo_alerta: 	null,
+				id_status: 	null,
+				id_usuario: 	null,
+				nb_tipo_alerta: 	null,
+				nu_nivel_alerta: 	null,
+				tx_accion: 	null,
+				tx_imagen: 	null,
+				fe_creado: 	null,
+				fe_actualizado: 	null,
+            },
+            list:{
                 status: 	 [],
 	 	 	 	usuario: 	 [],
             },

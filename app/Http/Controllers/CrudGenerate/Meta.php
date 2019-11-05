@@ -48,6 +48,7 @@ class Meta
                 $foreingKeys  = $this->getForeignKeys($tableObject);
                 
                 $tables[$tablename] = [
+                    'name'          => $tablename,
                     'className'     => $className,
                     'instanceName'  => $instanceName,
                     'columns'       => $columns,
@@ -96,17 +97,21 @@ class Meta
 
         foreach ($columnObjects as $columnObject) 
         {
-            $colsAttr = $this->getColumnsAttributes($columnObject);
+            $colsAttr  = $this->getColumnsAttributes($columnObject);
 
             $labelName = $this->labelName($colsAttr['name']);
 
+            $prefix    = $this->getPrefix($colsAttr['name']);
+
             $columns[$colsAttr['name']] = [
+                'name'      => $colsAttr['name'],
                 'type'      => $colsAttr['type'],
                 'notnull'   => $colsAttr['notnull'],
                 'length'    => $colsAttr['length'],
                 'precision' => $colsAttr['precision'],
                 'comment'   => $colsAttr['comment'],
-                'labelName' => $labelName
+                'labelName' => $labelName,
+                'prefix'    => $prefix
             ];
         }
 
@@ -149,6 +154,28 @@ class Meta
                 $localTable    = $this->getTableName($fkObject->getLocalTableName());
                 $foreignColumn = $fkObject->getForeignColumns()[0];
                 $foreignTable  = $this->getTableName($fkObject->getForeignTableName());
+
+                $localTable    = [ 
+                    'name'         => $localTable,
+                    'className'    => Str::studly($localTable),
+                    'instanceName' => Str::camel($localTable),
+                ];
+
+                $localColumn    = [ 
+                    'name'         => $localColumn,
+                    'labelName'    => $this->labelName($localColumn),
+                ];
+
+                $foreignTable  = [ 
+                    'name'         => $foreignTable,
+                    'className'    => Str::studly($foreignTable),
+                    'instanceName' => Str::camel($foreignTable),
+                ];
+
+                $foreignColumn    = [ 
+                    'name'         => $foreignColumn,
+                    'labelName'    => $this->labelName($foreignColumn),
+                ];
 
                 $foreignKeys[$foreignName] = [
                     'localTable'    => $localTable,

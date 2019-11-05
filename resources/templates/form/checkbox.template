@@ -1,6 +1,0 @@
-
-            <v-checkbox
-                  :rules="rules.required"
-                  v-model="form.{{columnName}}"
-                  label="{{fieldName}}"
-            ></v-checkbox>

@@ -82,10 +82,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import VisitanteForm  from 'VisitanteForm';
+import visitanteForm  from './visitanteForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'visitante-form': VisitanteForm },
+    components: { 'visitante-form': visitanteForm },
     data () {
     return {
         titulo: 'Visitante',
@@ -114,7 +114,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/visitante')
+           axios.get('api/v1/visitante')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

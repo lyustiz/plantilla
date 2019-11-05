@@ -79,18 +79,20 @@
 
   export default {
       components: { 'layout-menu': LayoutMenu },
+      mounted(){
+
+           this.$router.options.routes.forEach(function(item, index) 
+            {
+                this.items.push({ icon: item.icon, title: item.name, to: item.path });
+            }, this);
+ 
+      },
      data () {
         return {
             clipped: false,
             drawer: false,
             fixed: false,
-            items: [
-                { icon: 'insert_chart', title: 'Inicio', to: '/' },
-                { icon: 'account_balance', title: 'Banco', to: '/banco' },
-                { icon: 'assignment', title: 'Oferta Comercial', to: '/ofertaComercial' },
-                { icon: 'assignment', title: 'Bitacora', to: '/bitacora' },
-                { icon: 'assignment', title: 'Usuario', to: '/usuario' }
-            ],
+            items: [],
             miniVariant: false,
         }
     },

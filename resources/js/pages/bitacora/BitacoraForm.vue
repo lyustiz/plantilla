@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_usuario"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.co_accion"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_tabla"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.in_id_tabla"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_old_valor"
@@ -52,7 +52,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_new_valor"
@@ -69,14 +69,15 @@
                 readonly
             >
                 <template v-slot:activator="{ on }">
-                <v-text-field
-                    v-on="on"
-                    v-model="dates.fe_accion"
-                    :rules="rules.etapaCo"
-                    label="Fecha Corresponsal"
-                    prepend-icon="event"
-                    readonly
-                ></v-text-field>
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_accion"
+                        :rules="rules.etapaCo"
+                        label="Accion"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
                 </template>
 
                 <v-date-picker 
@@ -89,7 +90,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="listas.usuario"
+            :items="list.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -117,32 +118,32 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $data }}</pre>
+    <pre v-if="$App.debug">{{ $props }}</pre>
 
 </div>
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'bitacora',
-            picker: {
-                fe_accion: ''
+            pickers:{
+                fe_accion: 	 null,
             },
             form:{
-                id_bitacora: '' ,
-				id_usuario: '',
-				co_accion: '',
-				tx_tabla: '',
-				in_id_tabla: '',
-				tx_old_valor: '',
-				tx_new_valor: '',
-				fe_accion: '',
+                id_bitacora: 	null,
+				id_usuario: 	null,
+				co_accion: 	null,
+				tx_tabla: 	null,
+				in_id_tabla: 	null,
+				tx_old_valor: 	null,
+				tx_new_valor: 	null,
+				fe_accion: 	null,
             },
-            listas:{
+            list:{
                 usuario: 	 [],
             },
         }

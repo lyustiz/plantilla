@@ -106,14 +106,14 @@ class ModelGenerator
     {
         $showColumns = [];
 
-        foreach ($table->columns as $columnName => $column) 
+        foreach ($table->columns as $column) 
         {
-            if(in_array($columnName, $this->hiddenCols))
+            if(in_array($column->name, $this->hiddenCols))
             {
                 continue;
             }
 
-            $showColumns[] = $columnName;
+            $showColumns[] = $column->name;
         }
 
         return "'" . implode( "',". PHP_EOL ."\t \t \t \t \t \t \t'" , $showColumns ) . "'";
@@ -134,13 +134,11 @@ class ModelGenerator
         {
             foreach ($foreignKeys as $foreignKey) 
             {
-                $foreignTable  = $foreignKey->foreignTable;
-                
-                $className     = Str::studly($foreignKey->foreignTable);
+                $className     = $foreignKey->foreignTable->className;
 
-                $instanceName  = Str::camel($foreignKey->foreignTable);
+                $instanceName  = $foreignKey->foreignTable->instanceName;
 
-                $foreignColumn = $foreignKey->foreignColumn;
+                $foreignColumn = $foreignKey->foreignColumn->name;
 
                 $fkString[] = str_replace(
                     [ '{{modelTableName}}', '{{functionTableName}}', '{{foreingColumn}}' ],

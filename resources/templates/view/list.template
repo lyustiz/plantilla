@@ -71,10 +71,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import {{className}}Form  from './{{className}}Form';
+import {{instanceName}}Form  from './{{instanceName}}Form';
 export default {
     mixins:     [ listHelper],
-    components: { '{{slugName}}-form': {{className}}Form },
+    components: { '{{slugName}}-form': {{instanceName}}Form },
     data () {
     return {
         titulo: '{{className}}',

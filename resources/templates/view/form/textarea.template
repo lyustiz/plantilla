@@ -2,7 +2,7 @@
         <v-flex xs12 sm6>
             <v-textarea
                 v-model="form.{{columnName}}"
-                label="{{fieldName}}"
-                placeholder="Indique {{fieldName}}"
+                label="{{labelName}}"
+                placeholder="Indique {{labelName}}"
             ></v-textarea>
         </v-flex>

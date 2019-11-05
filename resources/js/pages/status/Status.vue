@@ -80,10 +80,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import StatusForm  from 'StatusForm';
+import statusForm  from './statusForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'status-form': StatusForm },
+    components: { 'status-form': statusForm },
     data () {
     return {
         titulo: 'Status',
@@ -110,7 +110,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/status')
+           axios.get('api/v1/status')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

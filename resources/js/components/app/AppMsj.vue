@@ -7,7 +7,7 @@
     >
         {{ txtMsj }}
         {{ subTxtMsj }}
-        <v-btn dark flat @click.native="closeMsj()">
+        <v-btn dark  @click.native="closeMsj()">
           <v-icon>close</v-icon>
         </v-btn>
     </v-snackbar>

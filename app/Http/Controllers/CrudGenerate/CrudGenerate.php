@@ -39,6 +39,7 @@ class CrudGenerate
         $views       = $this->viewGenerate();
 
         $routes       = $this->routeGenerate();
+        
 
         return compact('models', 'controllers', 'views', 'routes');
     }

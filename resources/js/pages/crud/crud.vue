@@ -78,11 +78,7 @@ import formHelper from '~/mixins/Appform';
 import AppRules from '~/mixins/AppRules';
  export default {
   mixins: [formHelper],
-   created()
-    {
-        this.listasLoader()
-
-    },
+ 
     data () {
         return {
             tabla: 'pago',
@@ -105,8 +101,6 @@ import AppRules from '~/mixins/AppRules';
                     .catch(error => {
                         this.showError(error);
                     })
-
-                    console.log(this.valido)
         },
 
         getTables()

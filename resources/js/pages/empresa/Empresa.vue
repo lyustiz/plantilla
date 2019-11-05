@@ -88,10 +88,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import EmpresaForm  from 'EmpresaForm';
+import empresaForm  from './empresaForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'empresa-form': EmpresaForm },
+    components: { 'empresa-form': empresaForm },
     data () {
     return {
         titulo: 'Empresa',
@@ -126,7 +126,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/empresa')
+           axios.get('api/v1/empresa')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

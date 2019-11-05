@@ -6,7 +6,7 @@
             item-value="{{columnName}}"
             v-model="form.{{columnName}}"
             :rules="rules.select"
-            label="{{fieldName}}"
+            label="{{labelName}}"
             autocomplete
             required
             ></v-select>

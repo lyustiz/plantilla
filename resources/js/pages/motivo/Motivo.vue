@@ -76,10 +76,10 @@
 
 <script>
 import listHelper from '~/mixins/Applist';
-import MotivoForm  from 'MotivoForm';
+import motivoForm  from './motivoForm';
 export default {
     mixins:     [ listHelper],
-    components: { 'motivo-form': MotivoForm },
+    components: { 'motivo-form': motivoForm },
     data () {
     return {
         titulo: 'Motivo',
@@ -102,7 +102,7 @@ export default {
 
             this.isLoading = false
         
-           axios.get('api/motivo')
+           axios.get('api/v1/motivo')
             .then(respuesta => {
                 this.items = respuesta.data;
                 this.isLoading = false

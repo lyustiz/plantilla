@@ -2,5 +2,5 @@
             <v-checkbox
                   :rules="rules.required"
                   v-model="form.{{columnName}}"
-                  label="{{fieldName}}"
+                  label="{{labelName}}"
             ></v-checkbox>

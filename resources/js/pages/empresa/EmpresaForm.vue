@@ -7,7 +7,7 @@
 
         <v-layout wrap>
                  
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_status"
@@ -16,7 +16,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_usuario"
@@ -25,7 +25,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_rif"
@@ -34,7 +34,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_direccion"
@@ -43,7 +43,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_telefono"
@@ -52,7 +52,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_contacto"
@@ -61,7 +61,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_correo"
@@ -70,7 +70,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_tipo_empresa"
@@ -79,7 +79,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_pais"
@@ -88,7 +88,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_region1"
@@ -97,7 +97,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_region2"
@@ -106,7 +106,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_region3"
@@ -115,7 +115,7 @@
             ></v-text-field>
         </v-flex>
                   
-        <v-flex xs12 >
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.tx_observaciones"
@@ -123,26 +123,62 @@
                 placeholder="Indique Observaciones"
             ></v-text-field>
         </v-flex>
-                  
-        <v-flex xs12 >
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.fe_creado"
-                label="Creado"
-                placeholder="Indique Creado"
-            ></v-text-field>
+                 
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_creado"
+                min-width="290px"
+                readonly
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_creado"
+                        :rules="rules.etapaCo"
+                        label="Creado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
+
+                <v-date-picker 
+                    v-model="form.fe_creado" 
+                    locale="es"
+                    @input="dates.fe_creado = formatDate( form.fe_creado )"
+                ></v-date-picker>
+            </v-menu>
         </v-flex>
-                  
-        <v-flex xs12 >
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.fe_actualizado"
-                label="Actualizado"
-                placeholder="Indique Actualizado"
-            ></v-text-field>
+
+        <v-flex xs12 sm3>
+            <v-menu
+                ref="picker"
+                v-model="picker.fe_actualizado"
+                min-width="290px"
+                readonly
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                        v-on="on"
+                        v-model="dates.fe_actualizado"
+                        :rules="rules.etapaCo"
+                        label="Actualizado"
+                        prepend-icon="event"
+                        readonly
+                        required
+                    ></v-text-field>
+                </template>
+
+                <v-date-picker 
+                    v-model="form.fe_actualizado" 
+                    locale="es"
+                    @input="dates.fe_actualizado = formatDate( form.fe_actualizado )"
+                ></v-date-picker>
+            </v-menu>
         </v-flex>
-                  
-        <v-flex xs12 >
+ 
+        <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
                 v-model="form.id_empresa_ppal"
@@ -200,33 +236,37 @@
 </template>
 
 <script>
-import formHelper from '~/mixins/Appform';
+import Appform from '~/mixins/Appform';
 export default {
-    mixins: [formHelper],
+    mixins: [Appform],
     data(){
         return{
             tabla: 'empresa',
-            form:{
-                id_empresa,
-				id_status,
-				id_usuario,
-				nb_empresa,
-				tx_rif,
-				tx_direccion,
-				tx_telefono,
-				tx_contacto,
-				tx_correo,
-				id_tipo_empresa,
-				id_pais,
-				id_region1,
-				id_region2,
-				id_region3,
-				tx_observaciones,
-				fe_creado,
-				fe_actualizado,
-				id_empresa_ppal,
+            pickers:{
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
             },
-            listas:{
+            form:{
+                id_empresa: 	null,
+				id_status: 	null,
+				id_usuario: 	null,
+				nb_empresa: 	null,
+				tx_rif: 	null,
+				tx_direccion: 	null,
+				tx_telefono: 	null,
+				tx_contacto: 	null,
+				tx_correo: 	null,
+				id_tipo_empresa: 	null,
+				id_pais: 	null,
+				id_region1: 	null,
+				id_region2: 	null,
+				id_region3: 	null,
+				tx_observaciones: 	null,
+				fe_creado: 	null,
+				fe_actualizado: 	null,
+				id_empresa_ppal: 	null,
+            },
+            list:{
                 status: 	 [],
 	 	 	 	usuario: 	 [],
             },

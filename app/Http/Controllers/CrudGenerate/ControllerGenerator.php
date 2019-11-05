@@ -47,19 +47,19 @@ class ControllerGenerator
     {
         $controllers = [];
         
-        foreach ($this->tables as $tableName => $table) 
+        foreach ($this->tables as $table) 
         {
-            $cruds = $this->definition($tableName, $table);
+            $cruds = $this->definition($table);
  
             $this->compile($cruds, $table);
 
-            $controllers[$tableName] = $this->controllerPath . $table->className . 'Controller.php';
+            $controllers[$table->name] = $this->controllerPath . $table->className . 'Controller.php';
         }
 
         return  $controllers;
     }
 
-    public function definition($tableName, $table)
+    public function definition($table)
     {
         $foreingnsTables  = $this->foreignsTables($table->foreignKeys);
 
@@ -163,7 +163,7 @@ class ControllerGenerator
         {
             foreach ($foreignKeys as $foreignKey) 
             {
-                $foreignTable[]  =  Str::studly($foreignKey->foreignTable);
+                $foreignTable[]  = $foreignKey->foreignTable->className;
             }
         }
 
