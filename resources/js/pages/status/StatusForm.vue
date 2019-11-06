@@ -10,6 +10,15 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
+                v-model="form.nb_status"
+                label="Status"
+                placeholder="Indique Status"
+            ></v-text-field>
+        </v-flex>
+                  
+        <v-flex xs12 sm6>
+            <v-text-field
+                :rules="rules.required"
                 v-model="form.in_grupo_status"
                 label="Grupo Status"
                 placeholder="Indique Grupo Status"
@@ -55,7 +64,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_creado"
+                v-model="pickers.fe_creado"
                 min-width="290px"
                 readonly
             >
@@ -82,7 +91,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_actualizado"
+                v-model="pickers.fe_actualizado"
                 min-width="290px"
                 readonly
             >
@@ -106,33 +115,6 @@
             </v-menu>
         </v-flex>
 
-        <v-flex xs12 sm3>
-            <v-menu
-                ref="picker"
-                v-model="picker.id_usuario"
-                min-width="290px"
-                readonly
-            >
-                <template v-slot:activator="{ on }">
-                    <v-text-field
-                        v-on="on"
-                        v-model="dates.id_usuario"
-                        :rules="rules.etapaCo"
-                        label="Usuario"
-                        prepend-icon="event"
-                        readonly
-                        required
-                    ></v-text-field>
-                </template>
-
-                <v-date-picker 
-                    v-model="form.id_usuario" 
-                    locale="es"
-                    @input="dates.id_usuario = formatDate( form.id_usuario )"
-                ></v-date-picker>
-            </v-menu>
-        </v-flex>
-
         </v-layout>
 
      </v-form>
@@ -150,7 +132,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -162,12 +144,18 @@ export default {
     data(){
         return{
             tabla: 'status',
-            pickers:{
+            dates:
+            {
                 fe_creado: 	 null,
 	 	 	 	fe_actualizado: 	 null,
-	 	 	 	id_usuario: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+            },
+            form:
+            {
                 id_status: 	null,
 				nb_status: 	null,
 				in_grupo_status: 	null,
@@ -179,7 +167,8 @@ export default {
 				fe_actualizado: 	null,
 				id_usuario: 	null,
             },
-            list:{
+            list:
+            {
                 
             },
         }

@@ -86,7 +86,6 @@ export default {
     return {
         titulo: 'Bitacora',
         headers: [
-            
             { text: 'Bitacora',   value: 'id_bitacora' },
 			{ text: 'Usuario',   value: 'id_usuario' },
 			{ text: 'Accion',   value: 'co_accion' },
@@ -95,8 +94,7 @@ export default {
 			{ text: 'Old Valor',   value: 'tx_old_valor' },
 			{ text: 'New Valor',   value: 'tx_new_valor' },
 			{ text: 'Accion',   value: 'fe_accion' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_bitacora'  },
         ],
     }
     },
@@ -105,10 +103,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/bitacora')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/bitacora')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -116,10 +114,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/bitacora/'+this.item.id_bitacora)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

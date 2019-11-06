@@ -10,60 +10,6 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_visitante"
-                label="Visitante"
-                placeholder="Indique Visitante"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_tipo_visitante"
-                label="Tipo Visitante"
-                placeholder="Indique Tipo Visitante"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_empresa"
-                label="Empresa"
-                placeholder="Indique Empresa"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_motivo"
-                label="Motivo"
-                placeholder="Indique Motivo"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_status"
-                label="Status"
-                placeholder="Indique Status"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
                 v-model="form.nu_ced_empleado"
                 label="Ced Empleado"
                 placeholder="Indique Ced Empleado"
@@ -100,7 +46,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_entrada"
+                v-model="pickers.fe_entrada"
                 min-width="290px"
                 readonly
             >
@@ -127,7 +73,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_salida"
+                v-model="pickers.fe_salida"
                 min-width="290px"
                 readonly
             >
@@ -154,7 +100,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_creado"
+                v-model="pickers.fe_creado"
                 min-width="290px"
                 readonly
             >
@@ -181,7 +127,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_actualizado"
+                v-model="pickers.fe_actualizado"
                 min-width="290px"
                 readonly
             >
@@ -207,7 +153,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="list.visitante"
+            :items="lists.visitante"
             item-text="nb_visitante"
             item-value="id_visitante"
             v-model="form.id_visitante"
@@ -220,7 +166,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.tipoVisitante"
+            :items="lists.tipoVisitante"
             item-text="nb_tipo_visitante"
             item-value="id_tipo_visitante"
             v-model="form.id_tipo_visitante"
@@ -233,7 +179,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.empresa"
+            :items="lists.empresa"
             item-text="nb_empresa"
             item-value="id_empresa"
             v-model="form.id_empresa"
@@ -246,7 +192,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.motivo"
+            :items="lists.motivo"
             item-text="nb_motivo"
             item-value="id_motivo"
             v-model="form.id_motivo"
@@ -259,7 +205,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.status"
+            :items="lists.status"
             item-text="nb_status"
             item-value="id_status"
             v-model="form.id_status"
@@ -272,7 +218,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.usuario"
+            :items="lists.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -300,7 +246,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -312,13 +258,22 @@ export default {
     data(){
         return{
             tabla: 'visita',
-            pickers:{
+            dates:
+            {
                 fe_entrada: 	 null,
 	 	 	 	fe_salida: 	 null,
 	 	 	 	fe_creado: 	 null,
 	 	 	 	fe_actualizado: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_entrada: 	 null,
+	 	 	 	fe_salida: 	 null,
+	 	 	 	fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+            },
+            form:
+            {
                 id_visita: 	null,
 				id_visitante: 	null,
 				id_tipo_visitante: 	null,
@@ -335,7 +290,8 @@ export default {
 				fe_creado: 	null,
 				fe_actualizado: 	null,
             },
-            list:{
+            list:
+            {
                 visitante: 	 [],
 	 	 	 	tipoVisitante: 	 [],
 	 	 	 	empresa: 	 [],

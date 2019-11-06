@@ -1,7 +1,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="list.{{fkTableName}}"
+            :items="lists.{{fkTableName}}"
             item-text="{{fkColTableName}}"
             item-value="{{columnName}}"
             v-model="form.{{columnName}}"

@@ -28,8 +28,8 @@ class CreateEmpresaTable extends Migration
             $table->integer('id_region3');
             $table->integer('id_status');
             $table->string('tx_observaciones', 200)->nullable();
-            $table->date('fe_creado');
-            $table->date('fe_actualizado');
+            $table->dateTime('fe_creado');
+            $table->dateTime('fe_actualizado');
             $table->integer('id_usuario');
             $table->integer('id_empresa_ppal');
 

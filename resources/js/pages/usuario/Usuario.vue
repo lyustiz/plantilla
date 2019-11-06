@@ -94,7 +94,6 @@ export default {
     return {
         titulo: 'Usuario',
         headers: [
-            
             { text: 'Usuario',   value: 'id_usuario' },
 			{ text: 'Status',   value: 'id_status' },
 			{ text: 'Usuario',   value: 'nb_usuario' },
@@ -111,8 +110,7 @@ export default {
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
 			{ text: 'Usuario C',   value: 'id_usuario_c' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_usuario'  },
         ],
     }
     },
@@ -121,10 +119,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/usuario')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/usuario')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -132,10 +130,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/usuario/'+this.item.id_usuario)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

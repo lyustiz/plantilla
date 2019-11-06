@@ -88,7 +88,6 @@ export default {
     return {
         titulo: 'Status',
         headers: [
-            
             { text: 'Status',   value: 'id_status' },
 			{ text: 'Status',   value: 'nb_status' },
 			{ text: 'Grupo Status',   value: 'in_grupo_status' },
@@ -99,7 +98,6 @@ export default {
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
 			{ text: 'Usuario',   value: 'id_usuario' },
-
             { text: 'Acciones', value: 'id_status'  },
         ],
     }
@@ -109,10 +107,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/status')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/status')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -120,10 +118,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/status/'+this.item.id_status)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

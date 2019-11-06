@@ -10,51 +10,6 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_visitante"
-                label="Visitante"
-                placeholder="Indique Visitante"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_tipo_alerta"
-                label="Tipo Alerta"
-                placeholder="Indique Tipo Alerta"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_visita"
-                label="Visita"
-                placeholder="Indique Visita"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_status"
-                label="Status"
-                placeholder="Indique Status"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
                 v-model="form.tx_motivo_alerta"
                 label="Motivo Alerta"
                 placeholder="Indique Motivo Alerta"
@@ -73,7 +28,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_creado"
+                v-model="pickers.fe_creado"
                 min-width="290px"
                 readonly
             >
@@ -100,7 +55,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_actualizado"
+                v-model="pickers.fe_actualizado"
                 min-width="290px"
                 readonly
             >
@@ -126,7 +81,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="list.visitante"
+            :items="lists.visitante"
             item-text="nb_visitante"
             item-value="id_visitante"
             v-model="form.id_visitante"
@@ -139,7 +94,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.visita"
+            :items="lists.visita"
             item-text="nb_visita"
             item-value="id_visita"
             v-model="form.id_visita"
@@ -152,7 +107,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.tipoAlerta"
+            :items="lists.tipoAlerta"
             item-text="nb_tipo_alerta"
             item-value="id_tipo_alerta"
             v-model="form.id_tipo_alerta"
@@ -165,7 +120,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.status"
+            :items="lists.status"
             item-text="nb_status"
             item-value="id_status"
             v-model="form.id_status"
@@ -178,7 +133,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.usuario"
+            :items="lists.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -206,7 +161,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -218,11 +173,18 @@ export default {
     data(){
         return{
             tabla: 'visitante_alerta',
-            pickers:{
+            dates:
+            {
                 fe_creado: 	 null,
 	 	 	 	fe_actualizado: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+            },
+            form:
+            {
                 id_visitante_alerta: 	null,
 				id_visitante: 	null,
 				id_tipo_alerta: 	null,
@@ -234,7 +196,8 @@ export default {
 				fe_creado: 	null,
 				fe_actualizado: 	null,
             },
-            list:{
+            list:
+            {
                 visitante: 	 [],
 	 	 	 	visita: 	 [],
 	 	 	 	tipoAlerta: 	 [],

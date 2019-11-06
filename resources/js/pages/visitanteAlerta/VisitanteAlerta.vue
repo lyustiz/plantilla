@@ -88,7 +88,6 @@ export default {
     return {
         titulo: 'VisitanteAlerta',
         headers: [
-            
             { text: 'Visitante Alerta',   value: 'id_visitante_alerta' },
 			{ text: 'Visitante',   value: 'id_visitante' },
 			{ text: 'Tipo Alerta',   value: 'id_tipo_alerta' },
@@ -99,8 +98,7 @@ export default {
 			{ text: 'Anulacion',   value: 'tx_anulacion' },
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_visitante_alerta'  },
         ],
     }
     },
@@ -109,10 +107,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/visitanteAlerta')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/visitanteAlerta')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -120,10 +118,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/visitanteAlerta/'+this.item.id_visitante_alerta)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

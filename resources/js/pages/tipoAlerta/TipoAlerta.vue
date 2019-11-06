@@ -87,7 +87,6 @@ export default {
     return {
         titulo: 'TipoAlerta',
         headers: [
-            
             { text: 'Tipo Alerta',   value: 'id_tipo_alerta' },
 			{ text: 'Status',   value: 'id_status' },
 			{ text: 'Usuario',   value: 'id_usuario' },
@@ -97,8 +96,7 @@ export default {
 			{ text: 'Imagen',   value: 'tx_imagen' },
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_tipo_alerta'  },
         ],
     }
     },
@@ -107,10 +105,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/tipoAlerta')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/tipoAlerta')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -118,10 +116,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/tipoAlerta/'+this.item.id_tipo_alerta)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

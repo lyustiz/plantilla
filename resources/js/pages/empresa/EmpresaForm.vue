@@ -10,18 +10,9 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_status"
-                label="Status"
-                placeholder="Indique Status"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
+                v-model="form.nb_empresa"
+                label="Empresa"
+                placeholder="Indique Empresa"
             ></v-text-field>
         </v-flex>
                   
@@ -73,51 +64,6 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_tipo_empresa"
-                label="Tipo Empresa"
-                placeholder="Indique Tipo Empresa"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_pais"
-                label="Pais"
-                placeholder="Indique Pais"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_region1"
-                label="Region1"
-                placeholder="Indique Region1"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_region2"
-                label="Region2"
-                placeholder="Indique Region2"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_region3"
-                label="Region3"
-                placeholder="Indique Region3"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
                 v-model="form.tx_observaciones"
                 label="Observaciones"
                 placeholder="Indique Observaciones"
@@ -127,7 +73,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_creado"
+                v-model="pickers.fe_creado"
                 min-width="290px"
                 readonly
             >
@@ -154,7 +100,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_actualizado"
+                v-model="pickers.fe_actualizado"
                 min-width="290px"
                 readonly
             >
@@ -177,19 +123,10 @@
                 ></v-date-picker>
             </v-menu>
         </v-flex>
- 
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_empresa_ppal"
-                label="Empresa Ppal"
-                placeholder="Indique Empresa Ppal"
-            ></v-text-field>
-        </v-flex>
-                          
+         
         <v-flex xs12 sm6>
             <v-select
-            :items="list.status"
+            :items="lists.status"
             item-text="nb_status"
             item-value="id_status"
             v-model="form.id_status"
@@ -202,7 +139,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.usuario"
+            :items="lists.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -230,7 +167,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -242,11 +179,18 @@ export default {
     data(){
         return{
             tabla: 'empresa',
-            pickers:{
+            dates:
+            {
                 fe_creado: 	 null,
 	 	 	 	fe_actualizado: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+            },
+            form:
+            {
                 id_empresa: 	null,
 				id_status: 	null,
 				id_usuario: 	null,
@@ -266,7 +210,8 @@ export default {
 				fe_actualizado: 	null,
 				id_empresa_ppal: 	null,
             },
-            list:{
+            list:
+            {
                 status: 	 [],
 	 	 	 	usuario: 	 [],
             },

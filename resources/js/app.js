@@ -16,7 +16,7 @@ Vue.prototype.$App = Object.freeze({
     version:  '0.1',
     basePath: '/api/v1/',
     ApiUrl:   '127.0.0.1:8000/api/v1',
-    debug:    false,
+    debug:    true,
     theme:{
             headPpal:  'red darkness-3',
             textPpal:  'white--text',

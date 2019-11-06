@@ -84,15 +84,13 @@ export default {
     return {
         titulo: 'TipoVisitante',
         headers: [
-            
             { text: 'Tipo Visitante',   value: 'id_tipo_visitante' },
 			{ text: 'Status',   value: 'id_status' },
 			{ text: 'Usuario',   value: 'id_usuario' },
 			{ text: 'Tipo Visitante',   value: 'nb_tipo_visitante' },
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_tipo_visitante'  },
         ],
     }
     },
@@ -101,10 +99,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/tipoVisitante')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/tipoVisitante')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -112,10 +110,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/tipoVisitante/'+this.item.id_tipo_visitante)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

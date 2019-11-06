@@ -84,15 +84,13 @@ export default {
     return {
         titulo: 'Motivo',
         headers: [
-            
             { text: 'Motivo',   value: 'id_motivo' },
 			{ text: 'Status',   value: 'id_status' },
 			{ text: 'Usuario',   value: 'id_usuario' },
 			{ text: 'Motivo',   value: 'nb_motivo' },
 			{ text: 'Creado',   value: 'fe_creado' },
 			{ text: 'Actualizado',   value: 'fe_actualizado' },
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: 'id_motivo'  },
         ],
     }
     },
@@ -101,10 +99,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/motivo')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/motivo')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -112,10 +110,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/motivo/'+this.item.id_motivo)
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

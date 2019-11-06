@@ -3,9 +3,9 @@ import AppRules from './AppRules'
 
 export default {
     mixins: [AppFormat, AppRules],
-    created()
+    mounted()
     {
-        this.listasLoader()
+        this.listsLoader()
         this.rstForm();
         this.basePath += this.tabla
         this.form.id_usuario = 1;
@@ -14,12 +14,12 @@ export default {
 
         return {
 
-            basePath: '/api/v1/',
+            basePath:   '/api/v1/',
             id_usuario: 1,//this.$store.getters.user.id_usuario,
-            valido: false,
-            btnAccion: '',
-            picker: false,
-            dates: {},
+            valido:     false,
+            btnAccion:  '',
+            picker:     false,
+            dates:      {},
             rules: {
                 select: [
                     v => !!v || 'Seleccione una Opcion (Campo Requerido)',
@@ -48,12 +48,10 @@ export default {
             if(val=='upd')
             {
                 this.mapForm();
-
             }else
             {
                 this.clear();
             }
-
         },
 
         item (val) {
@@ -81,6 +79,7 @@ export default {
             if (!date) return null
 
             const [year, month, day] = date.split('-')
+
             return `${day}/${month}/${year}`
         },
         formatNumber: function (value)
@@ -88,43 +87,40 @@ export default {
             let val = (value/1).toFixed(2).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
-        listRequests(objListas)
+        listRequests(objLists)
         {
-            let peticiones = [];
+            let request = [];
 
-            for(var lista in objListas)
+            for(var list in objLists)
             {
-                let parametro = (objListas[lista]) ? objListas[lista] : '';
+                let param = (objLists[list]) ? objLists[list] : '';
 
-                peticiones.push(axios.get(this.basePath + lista + parametro));
+                request.push(axios.get(this.basePath + list + param));
             }
 
-            return axios.all(peticiones)
+            return axios.all(request)
 
         },
-
-        listasLoader()
+        listsLoader()
         {
-            this.listRequests(this.listas)
-            .then(
-
+            this.listRequests(this.lists)
+            .then
+            (
                 axios.spread( (...dataLists) =>
                 {
                     let i = 0;
-                    for(var key in this.listas)
+                    for(var key in this.lists)
                     {
-                        this.listas[key] = dataLists[i].data
+                        this.lists[key] = dataLists[i].data
                         i++;
                     }
                 })
             )
-            .catch(error =>{
-
+            .catch(error =>
+            {
                 this.showError(error);
-
             });
         },
-
         mapForm()
         {
             if(this.item)
@@ -133,7 +129,6 @@ export default {
                 {
                     if(this.form.hasOwnProperty(key))
                     {
-
                         if(key.substr(0, 2) == 'fe')
                         {
                             this.dates[key] =  this.formatDate(this.item[key]);
@@ -143,23 +138,18 @@ export default {
                 }
             }else
             {
-
                 this.rstForm()
             }
-
         },
-
         rstForm()
         {
             for(var key in this.form)
             {
-
                 this.form[key] = null;
             }
 
             for(var key in this.dates)
             {
-
                 this.dates[key] = null;
             }
 
@@ -175,7 +165,5 @@ export default {
             this.$emit('modalClose');
             this.clear();
         },
-
     }
-
 }

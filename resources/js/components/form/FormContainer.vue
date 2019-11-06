@@ -35,6 +35,6 @@
 <script>
 export default {
     name: 'list-container',
-    props:['titulo', 'ayuda', 'HeadColor', 'TextColor' ],
+    props:['titulo', 'help', 'headColor', 'textColor' ],
 }
 </script>

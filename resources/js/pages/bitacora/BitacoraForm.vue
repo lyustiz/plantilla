@@ -10,15 +10,6 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
                 v-model="form.co_accion"
                 label="Accion"
                 placeholder="Indique Accion"
@@ -64,7 +55,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_accion"
+                v-model="pickers.fe_accion"
                 min-width="290px"
                 readonly
             >
@@ -90,7 +81,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="list.usuario"
+            :items="lists.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -118,7 +109,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -130,10 +121,16 @@ export default {
     data(){
         return{
             tabla: 'bitacora',
-            pickers:{
+            dates:
+            {
                 fe_accion: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_accion: 	 null,
+            },
+            form:
+            {
                 id_bitacora: 	null,
 				id_usuario: 	null,
 				co_accion: 	null,
@@ -143,7 +140,8 @@ export default {
 				tx_new_valor: 	null,
 				fe_accion: 	null,
             },
-            list:{
+            list:
+            {
                 usuario: 	 [],
             },
         }

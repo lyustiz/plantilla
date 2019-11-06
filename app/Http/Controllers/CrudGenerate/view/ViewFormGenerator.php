@@ -69,7 +69,7 @@ class ViewFormGenerator
     {
         foreach ($this->columns as $column )
         {
-            if($column->prefix . '_' . $this->table->name != $column->name)
+            if($column->prefix . '_' . $this->table->name != $this->table->primaryKey)
             {
                 $this->definition .= $this->fieldTemplates($column);
             }

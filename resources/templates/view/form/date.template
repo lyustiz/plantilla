@@ -2,7 +2,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.{{columnName}}"
+                v-model="pickers.{{columnName}}"
                 min-width="290px"
                 readonly
             >

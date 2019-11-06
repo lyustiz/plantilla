@@ -27,9 +27,9 @@ class CreateUsuarioTable extends Migration {
 			$table->string('tx_rif', 12)->nullable();
 			$table->string('tx_telefono', 100)->nullable();
 			$table->integer('id_status');
-			$table->date('fe_creado');
-			$table->date('fe_actualizado')->nullable();
-			$table->date('id_usuario_c');
+			$table->dateTime('fe_creado');
+			$table->dateTime('fe_actualizado')->nullable();
+			$table->integer('id_usuario_c');
 
 			$table->foreign('id_status', 'fk_usuario_status')->references('id_status')->on('status');
 			

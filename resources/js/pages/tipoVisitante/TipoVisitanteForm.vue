@@ -10,25 +10,16 @@
         <v-flex xs12 sm6>
             <v-text-field
                 :rules="rules.required"
-                v-model="form.id_status"
-                label="Status"
-                placeholder="Indique Status"
-            ></v-text-field>
-        </v-flex>
-                  
-        <v-flex xs12 sm6>
-            <v-text-field
-                :rules="rules.required"
-                v-model="form.id_usuario"
-                label="Usuario"
-                placeholder="Indique Usuario"
+                v-model="form.nb_tipo_visitante"
+                label="Tipo Visitante"
+                placeholder="Indique Tipo Visitante"
             ></v-text-field>
         </v-flex>
                  
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_creado"
+                v-model="pickers.fe_creado"
                 min-width="290px"
                 readonly
             >
@@ -55,7 +46,7 @@
         <v-flex xs12 sm3>
             <v-menu
                 ref="picker"
-                v-model="picker.fe_actualizado"
+                v-model="pickers.fe_actualizado"
                 min-width="290px"
                 readonly
             >
@@ -81,7 +72,7 @@
          
         <v-flex xs12 sm6>
             <v-select
-            :items="list.status"
+            :items="lists.status"
             item-text="nb_status"
             item-value="id_status"
             v-model="form.id_status"
@@ -94,7 +85,7 @@
                   
         <v-flex xs12 sm6>
             <v-select
-            :items="list.usuario"
+            :items="lists.usuario"
             item-text="nb_usuario"
             item-value="id_usuario"
             v-model="form.id_usuario"
@@ -122,7 +113,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -134,11 +125,18 @@ export default {
     data(){
         return{
             tabla: 'tipo_visitante',
-            pickers:{
+            dates:
+            {
                 fe_creado: 	 null,
 	 	 	 	fe_actualizado: 	 null,
             },
-            form:{
+            pickers:
+            {
+                fe_creado: 	 null,
+	 	 	 	fe_actualizado: 	 null,
+            },
+            form:
+            {
                 id_tipo_visitante: 	null,
 				id_status: 	null,
 				id_usuario: 	null,
@@ -146,7 +144,8 @@ export default {
 				fe_creado: 	null,
 				fe_actualizado: 	null,
             },
-            list:{
+            list:
+            {
                 status: 	 [],
 	 	 	 	usuario: 	 [],
             },

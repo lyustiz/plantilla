@@ -28,7 +28,7 @@ export default {
         {
             this.modal  = false;
             this.item   = '';
-            this.list();
+            this.listsLoader();
             this.action = false;
         },
         insItem ()

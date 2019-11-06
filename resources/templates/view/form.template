@@ -24,7 +24,7 @@
 
     </form-container>
 
-    <pre v-if="$App.debug">{{ $props }}</pre>
+    <pre v-if="$App.debug">{{ $data }}</pre>
 
 </div>
 </template>
@@ -36,13 +36,20 @@ export default {
     data(){
         return{
             tabla: '{{tableName}}',
-            pickers:{
+            dates:
+            {
                 {{pickers}}
             },
-            form:{
+            pickers:
+            {
+                {{pickers}}
+            },
+            form:
+            {
                 {{tableField}}
             },
-            list:{
+            list:
+            {
                 {{foreignTables}}
             },
         }

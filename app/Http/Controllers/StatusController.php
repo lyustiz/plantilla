@@ -46,10 +46,10 @@ class StatusController extends Controller
 			'nb_status2'        => 	'required|alpha_num|max:30',
 			'nu_orden'          => 	'required|integer|max:10',
 			'nu_orden2'         => 	'required|integer|max:10',
-			'id_usuario'        => 	'required|alpha_num|max:',
+			'id_usuario'        => 	'required|integer',
         ]);
 
-        $status = status::create($request->all());
+        $status = status::create($validate);
 
         return [ 'msj' => 'Registro Agregado Correctamente', compact('status') ];
     }

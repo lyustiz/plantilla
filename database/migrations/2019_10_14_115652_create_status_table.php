@@ -22,9 +22,9 @@ class CreateStatusTable extends Migration
             $table->string('nb_status2', 30)->nullable();
             $table->integer('nu_orden');
             $table->integer('nu_orden2');
-			$table->date('fe_creado');
-			$table->date('fe_actualizado')->nullable();;
-			$table->date('id_usuario');
+			$table->dateTime('fe_creado');
+			$table->dateTime('fe_actualizado')->nullable();;
+			$table->integer('id_usuario');
 			
 		});
                

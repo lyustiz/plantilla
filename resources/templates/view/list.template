@@ -79,10 +79,8 @@ export default {
     return {
         titulo: '{{className}}',
         headers: [
-            
             {{headers}}
-
-            { text: 'Acciones', value: 'id_status'  },
+            { text: 'Acciones', value: '{{primaryKey}}'  },
         ],
     }
     },
@@ -91,10 +89,10 @@ export default {
         list () {
 
             this.isLoading = false
-        
-           axios.get('api/v1/{{instanceName}}')
-            .then(respuesta => {
-                this.items = respuesta.data;
+            
+            axios.get('api/v1/{{instanceName}}')
+            .then(response => {
+                this.items = response.data;
                 this.isLoading = false
             })
             .catch(error => {
@@ -102,10 +100,11 @@ export default {
                 this.isLoading = false
             })
         },
-        delItem(){
+        delItem()
+        {
             axios.delete('/api/v1/{{instanceName}}/'+this.item.{{primaryKey}})
-            .then(respuesta => {
-                this.verMsj(respuesta.data.msj)
+            .then(response => {
+                this.verMsj(response.data.msj)
                 this.list();
                 this.item = '';
                 this.dialogo = false;

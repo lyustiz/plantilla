@@ -10,7 +10,7 @@
                     <v-select
                         label="Schema"
                         v-model="form.schema"
-                        :items="listas.schemas"
+                        :items="lists.schemas"
                         :rules="rules.requerido"
                         @change="getTables()"
                     ></v-select>
@@ -86,17 +86,17 @@ import AppRules from '~/mixins/AppRules';
                 schema:  '',
                 tables:  '',  
             },
-            listas:{
+            lists:{
                 schemas: [],
             },
         }
     },
     methods: {
-        listasLoader()
+        listsLoader()
         {
             axios.get('api/v1/' + 'crud/' + 'schemas')
-                    .then(respuesta => {
-                        this.listas.schemas = respuesta.data.schemas;
+                    .then(response => {
+                        this.lists.schemas = response.data.schemas;
                     })
                     .catch(error => {
                         this.showError(error);
@@ -106,8 +106,8 @@ import AppRules from '~/mixins/AppRules';
         getTables()
         {
             axios.post('api/v1/' + 'crud/' + 'tables', this.form)
-            .then(respuesta => {
-                this.form.tables = respuesta.data;
+            .then(response => {
+                this.form.tables = response.data;
                 this.IsLoading = false
             })
             .catch(error => {
