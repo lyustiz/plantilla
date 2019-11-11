@@ -75,19 +75,27 @@
 </template>
 
 <script>
+
   import LayoutMenu from  '~/components/app/AppMenu';
 
-  export default {
-      components: { 'layout-menu': LayoutMenu },
-      mounted(){
-
-           this.$router.options.routes.forEach(function(item, index) 
-            {
-                this.items.push({ icon: item.icon, title: item.name, to: item.path });
-            }, this);
- 
-      },
-     data () {
+export default 
+{
+    components: { 'layout-menu': LayoutMenu },
+    mounted()
+	{
+	    this.$router.options.routes.forEach(function(item, index) 
+		{
+			this.items.push
+			({ 
+				icon: 	item.icon, 
+				title: 	item.name, 
+				to: 	item.path 
+			});
+			
+		}, this);
+    },
+    data () 
+	{
         return {
             clipped: false,
             drawer: false,
@@ -102,7 +110,6 @@
         {
             return 1//this.$router.options.routes
         }
-
     }
   }
 
@@ -121,6 +128,13 @@
 
     .fade-enter, .fade-leave-active {
         opacity: 0
+    }
+	
+    .v-btn--floating {
+        padding: 10px !important;
+    }
+    .v-btn--floating .v-btn__content {
+        flex: 1 0 auto;
     }
 
 </style>

@@ -1,126 +1,76 @@
-import AppFormat from './AppFormat';
-import AppRules from './AppRules'
+import AppFormat  from './AppFormat';
+import AppRules   from './AppRules'
+import AppSelect  from './AppSelect'
+import AppMessage from './AppMessage'
 
 export default {
-    mixins: [AppFormat, AppRules],
-    mounted()
+    mixins: [AppFormat, AppRules, AppSelect, AppMessage],
+    created()
     {
-        this.listsLoader()
-        this.rstForm();
+        this.fillSelects()
+        /*this.rstForm();
         this.basePath += this.tabla
-        this.form.id_usuario = 1;
+        this.form.id_usuario = 1;*/
     },
     data() {
-
         return {
 
-            basePath:   '/api/v1/',
             id_usuario: 1,//this.$store.getters.user.id_usuario,
-            valido:     false,
-            btnAccion:  '',
-            picker:     false,
+            valid:      true,
+            calendar:   false,
             dates:      {},
-            rules: {
-                select: [
-                    v => !!v || 'Seleccione una Opcion (Campo Requerido)',
-                    ],
-                requerido: [
-                    v => !!v || 'Campo Requerido',
-                    ],
-                monto: [
-                    v => !!v || 'Monto Requerido',
-                   ],
-                fecha: [
-                    v => !!v || 'Fecha Requerida',
-                    ],
-            }
-
         }
     },
-    props: ['accion', 'item', 'titulo'],
+	
+    props: {
+        item: {
+            type: Object,
+            default: null
+        },
+        action: {
+            type: String,
+            default: null
+        },
+		title: {
+            type: String,
+            default: null
+        },
+	},
 
     watch: {
-
-        accion (val)
+        action (value)
         {
-            this.btnAccion = val;
+            this.mapForm()
+			
+			//this.btnAccion = val;
 
-            if(val=='upd')
+            /*if(val=='upd')
             {
                 this.mapForm();
             }else
             {
                 this.clear();
-            }
+            }*/
         },
 
-        item (val) {
+        /*item (val) {
             this.mapForm()
-        }
+        }*/
     },
-    filters: {
-
-        formDate: function (value) {
-
-            if (!date) return null
-            const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
+	computed: 
+	{
+        fullUrl() 
+		{
+            return this.$App.baseUrl + this.resource;
         },
-        formatNumber: function (value)
-        {
-            let val = (value/1).toFixed(2).replace('.', ',')
-            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        }
-
+		
+        fullUrlId() 
+		{
+            return this.fullUrl + '/' + this.item['id_' + this.resource]
+        },
     },
-    methods: {
-        formatDate (date)
-        {
-            if (!date) return null
-
-            const [year, month, day] = date.split('-')
-
-            return `${day}/${month}/${year}`
-        },
-        formatNumber: function (value)
-        {
-            let val = (value/1).toFixed(2).replace('.', ',')
-            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        },
-        listRequests(objLists)
-        {
-            let request = [];
-
-            for(var list in objLists)
-            {
-                let param = (objLists[list]) ? objLists[list] : '';
-
-                request.push(axios.get(this.basePath + list + param));
-            }
-
-            return axios.all(request)
-
-        },
-        listsLoader()
-        {
-            this.listRequests(this.lists)
-            .then
-            (
-                axios.spread( (...dataLists) =>
-                {
-                    let i = 0;
-                    for(var key in this.lists)
-                    {
-                        this.lists[key] = dataLists[i].data
-                        i++;
-                    }
-                })
-            )
-            .catch(error =>
-            {
-                this.showError(error);
-            });
-        },
+    methods: 
+	{
         mapForm()
         {
             if(this.item)
@@ -129,19 +79,61 @@ export default {
                 {
                     if(this.form.hasOwnProperty(key))
                     {
-                        if(key.substr(0, 2) == 'fe')
+                        if(key.includes('fe_') && this.item[key].length > 10)
                         {
                             this.dates[key] =  this.formatDate(this.item[key]);
-                        }
-                        this.form[key]  =  this.item[key];
+							
+							this.form[key] = this.item[key].substr(0, 10);
+							
+                        } else {
+							
+							this.form[key]  =  this.item[key];
+						}
                     }
                 }
             }else
             {
-                this.rstForm()
+                this.reset()
             }
         },
-        rstForm()
+				
+		store() 
+		{
+            if (this.$refs.form.validate()) 
+			{
+                this.loading = true;
+				
+                axios.post(this.fullUrl, this.form)
+                    .then(response => 
+					{
+                        this.validResponse(response)
+						
+                    }).catch(error => {
+						
+                        this.showError(error);
+                    })
+            }
+        },
+		
+        update() 
+		{
+            if (this.$refs.form.validate()) 
+			{
+                this.loading = true;
+				
+                axios.put(this.fullUrlId, this.form)
+                    .then(response => 
+					{
+                        this.validResponse(response)
+						
+                    }).catch(error => {
+						
+                        this.showError(error);
+                    })
+            }
+        },
+        
+        reset()
         {
             for(var key in this.form)
             {
@@ -152,14 +144,16 @@ export default {
             {
                 this.dates[key] = null;
             }
-
+            //this.$refs.form.reset();
             this.form.id_usuario = 1
         },
+		
         clear ()
         {
             this.$refs.form.reset();
-            this.rstForm();
+            this.reset();
         },
+		
         cancel()
         {
             this.$emit('modalClose');

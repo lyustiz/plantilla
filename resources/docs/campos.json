@@ -1,0 +1,119 @@
+{
+    "SistemaControlPerceptivo":{
+
+        "formatos":[
+
+            {
+                "nombre":"ACTA DE RECEPCION DE BIENES DE USO",
+                "camposFormato":[
+                    {
+                        "nombre":"N° CONTROL PERCEPTIVO",
+                        "descripcion":"Numero de control generado por el sistema y guardado en BD",
+                        "tabla":"FA_PERCEPTIVE_CONTROL",
+                        "campoTabla":"nb_control_number",
+                        "observaciones":"Es necesario crear una tabla para guardar este dato."
+                    },
+                    {
+                        "nombre":"FECHA DIA-MES-AÑO (ENCABEZADO)",
+                        "descripcion":"Fecha en la que se generó el formato.",
+                        "tabla":"N/A",
+                        "campoTabla":"N/A",
+                        "observaciones":"Será agregado por el sistema cuando se genere el formato"
+                    },
+                    {
+                        "nombre":"UNIDAD SOLICITANTE",
+                        "descripcion":"Unidad que solicita el activo",
+                        "tabla":"VISTA: PER_PEOPLE_X",
+                        "campoTabla":"ATTRIBUTE2",
+                        "observaciones":"Gerencia del responsable seleccionado"
+                    },
+                    {
+                        "nombre":"RESPONSABLE PATRIMONIAL (RPP)",
+                        "descripcion":"Responsable de la unidad que solicita el activo",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"KEY: EMPLOYEE_NUMBER / VALUE: EMPLOYEE_NAME",
+                        "observaciones":"Combo con el personal de la gerencia previamente seleccionada"
+                    },
+                    {
+                        "nombre":"NOMBRE O RAZÓN SOCIAL",
+                        "descripcion":"Proveedor del activo",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"VENDOR_NAME",
+                        "observaciones":""
+                    },
+                    {
+                        "nombre":"NO. DE ORDEN DE COMPRA",
+                        "descripcion":"Numero de la orden de compra",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"PO_NUMBER",
+                        "observaciones":"COMBO ORDENES DE COMPRA ASOCIADAS AL PROVEEDOR Y LA GERENCIA SOLICITANTE"
+                    },
+                    {
+                        "nombre":"FECHA DIA-MES-AÑO (ORDEN DE COMPRA)",
+                        "descripcion":"Fecha de la orden de compra",
+                        "tabla":"PO_PURCHASE_ORDER_V",
+                        "campoTabla":"PO_DATE",
+                        "observaciones":"Fecha asociada a la orden de compra seleccionada previamente"
+                    },
+                    {
+                        "nombre":"NOTA DE ENTREGA",
+                        "descripcion":"Nota de entrega",
+                        "tabla":"N/A",
+                        "campoTabla":"N/A",
+                        "observaciones":"Campo de texto. Ingresado por el usuario"
+                    },
+                    {
+                        "nombre":"FECHA DIA-MES-AÑO (NOTA DE ENTREGA)",
+                        "descripcion":"Fecha de la nota de entrega",
+                        "tabla":"N/A",
+                        "campoTabla":"N/A",
+                        "observaciones":"Ingresado por el usuario"
+                    },
+                    {
+                        "nombre":"FACTURA",
+                        "descripcion":"Factura",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"INVOICE_ID/INVOICE_NUMBER",
+                        "observaciones":"Factura asociada a la orden de compra y proveedor."
+                    },
+                    {
+                        "nombre":"FECHA DIA-MES-AÑO (FACTURA)",
+                        "descripcion":"Fecha de la factura",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"INVOICE_DATE",
+                        "observaciones":"Fecha asociada a la factura"
+                    },
+                    {
+                        "nombre":"VIGENCIA DE LA GARANTIA",
+                        "descripcion":"Vigencia de la garantia",
+                        "tabla":"VISTA: FA_MASS_ADDITIONS_V",
+                        "campoTabla":"WARRANTY_NUMBER",
+                        "observaciones":""
+                    },
+                    {
+                        "nombre":"TABLA BIENES (ACTIVOS)",
+                        "descripcion":"Tabla con los activos a recibir",
+                        "tabla":"FA_ASSET_V",
+                        "campoTabla":"ASSET_NUMBER",
+                        "observaciones":"Activos asociados a la factura, orden de compra, etc"
+                    },
+                    {
+                        "nombre":"OBSERVACIONES",
+                        "descripcion":"Observaciones",
+                        "tabla":"N/A",
+                        "campoTabla":"N/A",
+                        "observaciones":"Ingresado por el usuario"
+                    }
+                ]
+            },
+            {
+                "nombre":"ASIGNACIÓN DE BIENES DE USO",
+                "camposFormato":[]
+            },
+            {
+                "nombre":"CONTROL PERCEPTIVO",
+                "camposFormato":[]
+            }
+        ]
+    }
+}

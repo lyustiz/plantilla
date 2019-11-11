@@ -14,7 +14,7 @@ Vue.component('app', App)
 Vue.prototype.$App = Object.freeze({
     title:    'Bandes',
     version:  '0.1',
-    basePath: '/api/v1/',
+    baseUrl:  '/api/',
     ApiUrl:   '127.0.0.1:8000/api/v1',
     debug:    true,
     theme:{
@@ -33,12 +33,12 @@ Vue.prototype.$App = Object.freeze({
 import './components/components'
 
 /** Minxins Autoload **/
-import appMsj from './mixins/AppMsj'
-Vue.mixin(appMsj)
+import AppMessage from './mixins/AppMessage'
+Vue.mixin(AppMessage)
 
 const app = new Vue({
     el: '#app',
-    mixins:[appMsj],
+    mixins:[AppMessage],
     store,
     router,
     vuetify,
