@@ -10,7 +10,7 @@ export default
                 mutiple: [
                     v =>  v.length > 0 || 'Seleccione una Opcion (Dato Requerido)',
                     ],
-                requerido: [
+                required: [
                     v => !!v || 'Dato Requerido',
                     ],
                 radio: [

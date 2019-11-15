@@ -11,7 +11,7 @@
                         label="Schema"
                         v-model="form.schema"
                         :items="lists.schemas"
-                        :rules="rules.requerido"
+                        :rules="rules.required"
                         @change="getTables()"
                     ></v-select>
                 </v-flex>
@@ -42,7 +42,7 @@
                                     <v-chip small><v-icon left color="info">straighten</v-icon>{{ column.length }}</v-chip>
                                     <v-chip small><v-icon left color="info">settings_ethernet</v-icon>{{ column.precision }}</v-chip>
                                     <v-chip small><v-icon left color="info">speaker_notes</v-icon>{{ column.comment }}</v-chip>
-                                     <v-chip small v-if="table.primaryKey == nbColumn"><v-icon left color="red">vpn_key</v-icon>Primary Key</v-chip>
+                                    <v-chip small v-if="table.primaryKey == nbColumn"><v-icon left color="red">vpn_key</v-icon>Primary Key</v-chip>
                                 </v-list-item-title>
                             </v-list-item-content>
 

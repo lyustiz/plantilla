@@ -40,11 +40,20 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::attempt(['nb_usuario' =>$request->get('nb_usuario'),'password' =>$request->get('password')])) {
-            $user=Auth::user();
-            $payload=JWTFactory::sub($user->id_usuario)->make();
-            $token=JWTAuth::encode($payload);
-            $m=Cookie::queue('AUTH-TOKEN',$token->get(),15);
+        
+        if (Auth::attempt([
+                'nb_usuario' => $request->get('nb_usuario'),
+                'password'   => $request->get('password')
+            ])) 
+        {
+            
+            $user    = Auth::user();
+            
+            $payload = JWTFactory::sub($user->id_usuario)->make();
+            
+            $token   = JWTAuth::encode($payload);
+            
+            $m       = Cookie::queue('AUTH-TOKEN',$token->get(),15);
 
             return [ 
                 'auth' => $token->get(),
@@ -53,20 +62,22 @@ class LoginController extends Controller
         }
         else
         {
-            return ['Error' => 'Acceso no permitido'] ;
+            return response('Usuario o Contraseña Invalida', 403) ;
         }
 
     }
     
     public function username()
     {
-      return 'nb_usuario';
+        return 'nb_usuario';
     }
 
     public function logout(Request $request)
     {
         auth()->logout();
+
         JWTAuth::parseToken()->refresh();
+        
         return redirect('/');
     }
 

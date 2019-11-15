@@ -7,39 +7,43 @@ use Adldap\Laravel\Facades\Adldap;
 
 class LdapController extends Controller
 {
-    protected $dn = 'ou=AppBaseBandes,ou=Aplicaciones,ou=Venezuela,ou=Bandes,dc=qa,dc=bandes,dc=gob,dc=ve';
+    protected $dn;
+
+    public function __construct()
+    {
+        $this->dn = env('LDAP_MENU_DN');
+    }
 
     public function index($user) 
     {
-
         $ldap = Adldap::search()
                 ->select  ('userid')
                 ->setDn($this->dn)
-                ->where('Memberuid', '=',$user)
+                ->where('Memberuid', $user)
                 ->get();
 
-        $menu = array();
+        $menu = [];
 
-        foreach ($ldap as $key => $value) {
-            // echo $value->uid[0]. "<br />\n";
+        foreach ($ldap as $key => $value) 
+        {
             $uid = $value->uid[0];
 
             $ldap = Adldap::search()
                             ->select  ('cn', 'labeleduri')
                             ->setDn($this->dn)
-                            ->where   ('Memberuid', '=', $uid)
+                            ->where   ('Memberuid', $uid)
                             ->whereHas('labeleduri')
                             ->sortBy('dn', 'cn', 'labeleduri', 'asc')
                             ->get();   
     
-            foreach ($ldap as $key => $value) {
-                // echo $value->cn[0]. "<br />\n";
+            foreach ($ldap as $key => $value) 
+            {
                 $labeleduri = $value->labeleduri;
                 sort($labeleduri);
                 $menu[$value->cn[0]] = $labeleduri;
             }
         }
-        // array_multisort($menu);
+        
         return $menu;
     }
 

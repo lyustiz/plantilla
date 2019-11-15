@@ -2,38 +2,43 @@ export default
 {
 	state(){
 		return{
-			id_usuario: false,
-			nb_usuario: 'error',
+			iduser: null,
+			username: null,
+			user: null,
+			auth: null,
 		}
 	},
 
 	getters:
 	{
-		id_usuario: state => state.id_usuario,
-		nb_usuario: state => state.nb_usuario,
+		iduser:   state => state.iduser,
+		username: state => state.username,
+		getUser:  state => state.user,
+		getAuth:  state => state.auth,
 	},
 
 	mutations:
 	{
-		setMsjShow (state, show)
-		{
-			state.show 	= show
+		setUser (state, user)
+        {
+			state.user 	   = user
+			state.iduser   = user.id_usuario
+			state.username = user.nb_usuario
 		},
-		setMsjColor(state, color)
-		{
-			state.color = color
+		
+		setAuth (state, auth)
+        {
+            state.auth 	= auth
 		},
-		setMsjText(state, text)
+		
+		setIdUsuario(state, iduser)
 		{
-			state.text 	= text || 'Ha ocurrido un error'
+			state.iduser  = iduser
 		},
-		setMsjSubText(state, subText)
+
+		setNbUsuario(state, username)
 		{
-			state.subText = subText
-		},
-		setMsjTimeOut(state, timeout)
-		{
-			state.timeout = timeout
-		},
+			state.username = username
+		}
 	}
 }

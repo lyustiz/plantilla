@@ -35,8 +35,4 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }

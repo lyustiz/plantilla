@@ -36,7 +36,7 @@ export default {
             switch (status)
             {
                 case 500:
-                msj = 'Error interno ->' + error.response.data.message
+                msj = 'Error interno'
                 break;
 
                 case 404:
@@ -44,7 +44,7 @@ export default {
                 break;
 
                 case 403:
-                msj = 'Sin autorizacion'
+                msj = error.response.data
                 break;
 
                 case 401:
@@ -97,7 +97,6 @@ export default {
                 }
                 break;
             }
-                
                 this.showMsjBar( msj, 'error')
 
             }else
@@ -119,6 +118,7 @@ export default {
 
         showMsjBar (message, color)
         {
+           
             this.$store.commit('setMsjShow', true)
             this.$store.commit('setMsjColor', color || 'error')
 

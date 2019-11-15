@@ -1,10 +1,10 @@
-import Appformat from './AppFormat';
+import AppFormat from './AppFormat';
 
 export default {
-    mixins: [Appformat],
+    mixins: [AppFormat],
     created()
     {
-        this.list();
+        this.listLoader();
     },
     data() {
 
@@ -28,7 +28,7 @@ export default {
         {
             this.modal  = false;
             this.item   = '';
-            this.listsLoader();
+            this.listLoader();
             this.action = false;
         },
         insItem ()
@@ -53,6 +53,10 @@ export default {
         delCancel ()
         {
             this.dialog = false;
+        },
+        listLoader()
+        {
+
         }
     }
 

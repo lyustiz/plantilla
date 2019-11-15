@@ -18,8 +18,8 @@ Vue.prototype.$App = Object.freeze({
     ApiUrl:   '127.0.0.1:8000/api/v1',
     debug:    true,
     theme:{
-            headPpal:  'red darkness-3',
-            textPpal:  'white--text',
+            headApp:   'red darkness-3',
+            textTitle: 'white--text',
             headForm:  'blue',
             textForm:  'white--text',
             headList:  'blue darken-3',
@@ -36,9 +36,10 @@ import './components/components'
 import AppMessage from './mixins/AppMessage'
 Vue.mixin(AppMessage)
 
+/** Componente Principal */
 const app = new Vue({
     el: '#app',
-    mixins:[AppMessage],
+    mixins:[ AppMessage ],
     store,
     router,
     vuetify,

@@ -1,55 +1,25 @@
 <template>
   <v-app>
 
-    <!--AppBar-->
-    <v-app-bar
-        app
-        :color="$App.theme.headPpal"
-        clipped-left
-      dark
-    >
-        <!--Titulo-->
-        <v-toolbar-title :class="$App.theme.textPpal" v-text="$App.title"></v-toolbar-title>
+    <!-- App Toolbar -->
+    <app-toolbar
+        :drawer="drawer"
+        :miniVariant="miniVariant"
+        v-on:changeDrawer="drawer = !drawer"
+        v-on:changeMiniVariant="miniVariant = !miniVariant"
+    ></app-toolbar>
 
-        <!--Toggle Menu Lateral-->
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <!--Toggle iconos/texto-->
-        <v-btn icon @click.stop="miniVariant = !miniVariant">
-            <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-        </v-btn>
-
-        <div class="flex-grow-1"></div>
-
-        <!--Ayuda-->
-        <v-btn icon >
-            <v-icon>help</v-icon>
-        </v-btn>
-
-        <!--Notificaciones-->
-        <v-btn icon >
-            <v-icon>notification_important</v-icon>
-        </v-btn>
-
-        <!--Form User Logot/Password-->
-        <v-form @submit.prevent="logout()">
-            <v-btn icon type="submit">
-                <v-icon>exit_to_app</v-icon>
-            </v-btn>
-        </v-form>
-
-    </v-app-bar>
-
-    <!--navegacion lateral-->
+    <!--Navegacion lateral-->
     <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      clipped
-      fixed
-      app
+        v-model="drawer"
+        :mini-variant="miniVariant"
+        clipped
+        fixed
+        app
+        class="blue-grey lighten-5"
     >
         <!--menu-->
-        <layout-menu :items=items></layout-menu>
+        <app-menu :items=items></app-menu>
 
     </v-navigation-drawer>
 
@@ -67,8 +37,11 @@
     <v-footer :fixed="fixed" app>
         <span>&copy; {{$App.title}}  {{ new Date().getFullYear() }}</span>
         <v-spacer></v-spacer>
-        <span>AppInnovaSystem</span>
+        <span>GETI</span>
     </v-footer>
+
+    <!--Mensaje Snack Bar-->
+    <app-message></app-message>
 
   </v-app>
 
@@ -76,11 +49,27 @@
 
 <script>
 
-  import LayoutMenu from  '~/components/app/AppMenu';
+  import AppMenu from  '~/components/app/AppMenu';
+  import AppToolbar from '~/layouts/AppToolbar'
 
 export default 
 {
-    components: { 'layout-menu': LayoutMenu },
+    components: { 
+        'app-menu': AppMenu,
+        'app-toolbar': AppToolbar, 
+    },
+    created()
+    {
+        
+        let auth = localStorage.getItem('auth');
+        let user = localStorage.getItem('user');
+        
+        if(auth)
+        {
+            this.$store.commit('setAuth', auth)
+            this.$store.commit('setUser', JSON.parse(user))
+        }
+    },
     mounted()
 	{
 	    this.$router.options.routes.forEach(function(item, index) 
@@ -98,10 +87,10 @@ export default
 	{
         return {
             clipped: false,
-            drawer: false,
+            drawer: true,
             fixed: false,
             items: [],
-            miniVariant: false,
+            miniVariant: true,
         }
     },
     computed:

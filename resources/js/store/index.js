@@ -3,13 +3,17 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import mensaje from '../store/app/msjBar'
+import AppMessage from '../store/app/AppMessage'
+import user         from '../store/auth/user'
+import AppDataTable from '../store/app/AppDataTable'
 
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
     modules: {
-        mensaje
+        AppMessage,
+        user,
+        AppDataTable
     },
     strict: debug
 })

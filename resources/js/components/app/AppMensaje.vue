@@ -1,13 +1,13 @@
 <template>
     <v-snackbar
-            :timeout="timeoutMsj"
-            :color="colorMsj"
-            v-model="showMsj"
-            :multi-line="false"
+		:timeout="timeoutMsj"
+		:color="colorMsj"
+		v-model="showMsj"
+		:multi-line="false"
     >
         {{ txtMsj }}
         {{ subTxtMsj }}
-        <v-btn dark  @click.native="closeMsj()">
+        <v-btn text  @click.native="closeMsj()">
           <v-icon>close</v-icon>
         </v-btn>
     </v-snackbar>
