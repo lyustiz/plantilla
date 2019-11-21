@@ -53,11 +53,12 @@ class LoginController extends Controller
             
             $token   = JWTAuth::encode($payload);
             
-            $m       = Cookie::queue('AUTH-TOKEN',$token->get(),15);
+            $m       = Cookie::queue('AUTH-TOKEN', $token->get(), 15);
 
             return [ 
                 'auth' => $token->get(),
                 'user' => $user,
+                'expires_in' => JWTFactory::getTTL() * 60
             ];
         }
         else
@@ -66,6 +67,12 @@ class LoginController extends Controller
         }
 
     }
+
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
     
     public function username()
     {

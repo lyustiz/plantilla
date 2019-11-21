@@ -45,7 +45,6 @@
             :item-key   = "key"
             class       = "elevation-1"  
             :select-all = "bool"
-            rows-per-page-text   = "Filas por Paginas"
             :rows-per-page-items = "element"
           >
           <template v-slot:items = "stock">

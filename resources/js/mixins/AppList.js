@@ -1,63 +1,111 @@
-import AppFormat from './AppFormat';
+import AppFormat  from './AppFormat';
+import AppMessage from './AppMessage';
 
-export default {
-    mixins: [AppFormat],
-    created()
+export default 
+{
+    mixins: [AppFormat, AppMessage],
+
+    data() 
     {
-        this.listLoader();
-    },
-    data() {
-
         return {
 
-            basePath:   this.$App.base,
-            idUsuario:  1,//this.$store.getters.user.id_usuario,
-            isLoading:  true,
-            modal:      false,
-            selected:   [],
-            items:      [],
-            item:       '',
-            search:     '',
-            accion:     '',
-            nbAction:   '',
-            dialog:     false,
+            baseUrl:  this.$App.baseUrl,
+            idUser:   this.$store.getters.idUser,
+            loading:  true,
+            modal:    false,
+            items:    [],
+            item:     {},
+            search:   '',
+            action:   '',
+            dialog:   false,
         }
     },
-    methods: {
-        modalClose()
+
+    created()
+    {
+        this.list();
+    },
+
+    computed: 
+    {
+        fullUrl() 
         {
+            return this.baseUrl + this.resource;
+        },
+        fullUrlId() 
+        {
+            return this.fullUrl + '/' + this.item['id_' + this.resource]
+        }
+    },
+    
+    methods: 
+    {
+        closeModal()
+        {
+            this.action = '';
             this.modal  = false;
-            this.item   = '';
-            this.listLoader();
-            this.action = false;
+            this.item   = {};
+            this.list();
         },
-        insItem ()
+        insertForm ()
         {
-            this.item = '';
-            this.nbAction  = 'Agregar:';
-            this.action     = 'ins';
-            this.modal      = true;
+            this.action = 'ins';
+            this.modal  = true;
+            this.item   = {};
         },
-        updItem (item)
+        updateForm (item)
         {
-            this.nbAction  = 'Editar:';
-            this.action     = 'upd';
-            this.modal      = true;
-            this.item       = item;
+            this.action = 'upd';
+            this.modal  = true;
+            this.item   = item;
         },
-        delForm (item)
+        deleteForm (item)
         {
             this.dialog = true;
-            this.item = item;
+            this.item   = item;
         },
-        delCancel ()
+        deleteCancel ()
         {
             this.dialog = false;
+            this.item   = {};
         },
-        listLoader()
+        deleteConfirm ()
         {
+            this.loading = true
+            axios.delete(this.fullUrlId)
+            .then(respuesta => 
+            {
+                this.showMensaje(respuesta.data.msj)
+                this.item = {};
+                this.dialog = false;
+                this.list();
+            })
+            .catch(error => 
+            {
+                this.eliminar = error
+            })
+            .finally( () => 
+            {
+                this.loading = false
+            });
+        },
+        list()
+        {
+            this.loading = true
 
+            axios.get(this.fullUrl)
+            .then(response => 
+            {
+                this.items = response.data
+            })
+            .catch(error => 
+            {
+                this.showError(error)
+            })
+            .finally( () => 
+            {
+                this.loading = false
+            });
         }
     }
-
 }

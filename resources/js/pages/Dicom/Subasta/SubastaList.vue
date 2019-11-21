@@ -44,8 +44,8 @@
         :items  ="items"
         :search ="search"
         item-key="id_subasta"
-        rows-per-page-text="Res. x Pag"
-        disable-initial-sort
+        
+        sort-by=""
         :loading="loading">
 
         <template slot="items" slot-scope="linea">

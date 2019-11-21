@@ -1,35 +1,45 @@
 <template>
 
     <!--menu-->
-    <v-list>
-
-        <v-list-item
-        router
-        :to="item.to"
-        :key="i"
-        v-for="(item, i) in items"
-        exact
-        ripple
-        active-class="menu-active"
-        
+   <v-list>
+        <v-list-group
+            v-for="(paths,menu) in menus"
+            :key="menu"
+            ripple
+            active-class="menu-active"
+            prepend-icon="more_vert"
         >
-            <v-list-item-avatar>
-                <v-icon v-html="item.icon"></v-icon>
-            </v-list-item-avatar>
+            <template v-slot:activator>
+                <v-list-item-content>
+                    <v-list-item-title>{{ capitalize(menu) }}</v-list-item-title>
+                </v-list-item-content>
+            </template>
 
-            <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
-            </v-list-item-content>
+                <v-list-item
+                    v-for="(path, submenu) in paths"
+                    :key="submenu"
+                    link
+                    dense
+                >
+                    <v-list-item-icon>
+                        <v-icon>navigate_next</v-icon>
+                    </v-list-item-icon>
+                    
+                    <v-list-item-title 
+                        v-text="actionName(path)"
+                        @click="$router.push(path)"
+                    ></v-list-item-title>
+ 
+                </v-list-item>
 
-        </v-list-item>
-
+        </v-list-group>
     </v-list>
 
 </template>
 
 <script>
 
-import AppFormat from '~/mixins/AppFormat'
+import AppFormat  from '~/mixins/AppFormat'
 import AppMessage from '~/mixins/AppMessage'
 
 export default {
@@ -44,18 +54,18 @@ export default {
     {
         return{
             url : 'api/ldap/',
+            menus : {},
         }
     },
-    created (){
-
+    created ()
+    {
             let url = this.url + this.$store.getters.username
 
             axios.get(url).then( response => 
             {
                 if(response.status==200)
                 {
-                     console.log(response.data)
-                    this.menuLdap=response.data
+                    this.menus=response.data
                 }
             })
             .catch(error => 
@@ -82,5 +92,9 @@ export default {
     }
     .v-list-item--link::before{
         background-color: rgb(134, 133, 133) !important;
+    }
+    .menu-active.v-list-item__content{
+        color:#f44336 !important;
+        caret-color: #f44336 !important;
     }
 </style>

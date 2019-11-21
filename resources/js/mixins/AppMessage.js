@@ -11,7 +11,8 @@ export default {
         validResponse(response){
             this.showMensaje(response.data.msj)
             this.modal = false;
-            this.servicios=response     
+            this.servicios=response  
+            console.log('valid response')   
             this.$emit('closeModal')    
         },
 		showMensaje (message)
@@ -137,12 +138,6 @@ export default {
             }
 
             this.clearMsj()
-        },
-		
-		closeModal()
-		{
-           this.$emit('closeModal')
-           this.reset();
         },
     }
 }

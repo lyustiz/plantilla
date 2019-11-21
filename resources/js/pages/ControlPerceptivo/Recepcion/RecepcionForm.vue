@@ -332,7 +332,6 @@ export default {
   },
   props: {
     item: {
-      type: Object,
       default: null
     },
     action: {
@@ -363,7 +362,7 @@ export default {
         tx_observacion: null,
         activos: [],
         facturas: [],
-        co_usuario: this.$store.getters.getUser.nb_usuario,
+        co_usuario: this.$store.getters.username,
         co_nota_entrega: null,
         fe_nota_entrega: null
       }

@@ -13,8 +13,8 @@
                     :items="items"
                     :search="search"
                     item-key="co_factura"
-                    rows-per-page-text="Res. x Pag"
-                    disable-initial-sort
+                    
+                    sort-by=""
                   >
                     <template slot="items" slot-scope="linea">
                       <td class="text-xs-left">{{ linea.item.co_factura }}</td>

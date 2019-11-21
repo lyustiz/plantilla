@@ -19,9 +19,9 @@ export default new Router({
       routes: [
         ...ControlPerceptivo,
         ...Dicom,
-        /*...Facturero,
+        ...Facturero,
         ...Fas,
-        ...General,*/
+        ...General,
     ]
 //dinamicRoutes
 //newRoutes

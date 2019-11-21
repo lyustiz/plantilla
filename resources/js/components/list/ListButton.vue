@@ -1,25 +1,24 @@
 <template>
     <v-layout row justify-center>
-    <v-speed-dial direction="left" :open-on-hover="isAutoOpen">
+    <v-speed-dial 
+    v-model="fab"
+    direction="left" 
+    :open-on-hover="!isAutoOpen">
 
-        <v-btn slot="activator" :color="color" dark small fab >
-            <v-icon>{{icono}}</v-icon>
-            <v-icon>close</v-icon>
+        <template v-slot:activator >
+            <v-btn v-model="fab" :color="(color) ? color : $App.theme.button.actions" dark small fab >
+                <v-icon v-if="!fab">{{ icon }}</v-icon>
+                <v-icon v-else>close</v-icon>
+            </v-btn>
+        </template>
+
+        <v-btn fab dark small :color="$App.theme.button.delete" @click="deleted">
+            <v-icon>delete</v-icon>
         </v-btn>
 
-        <v-tooltip top v-if="del">
-            <v-btn slot="activator" fab dark small color="error" @click="eliminar">
-                <v-icon>delete</v-icon>
-            </v-btn>
-                <span>Eliminar</span>
-        </v-tooltip>
-
-        <v-tooltip top v-if="upd">
-            <v-btn slot="activator" fab dark small color="warning" @click="editar">
-                <v-icon>edit</v-icon>
-            </v-btn>
-                <span>Editar</span>
-        </v-tooltip>
+            <v-btn fab dark small :color="$App.theme.button.update" @click="update">
+            <v-icon>edit</v-icon>
+        </v-btn>
 
         <slot></slot>
 
@@ -29,15 +28,20 @@
 
 <script>
 export default {
+    data(){
+        return {
+            fab: false
+        }
+    },
     methods:
     {
-        editar()
+        deleted()
         {
-            this.$emit('editar',this.item);
+            this.$emit('delete');
         },
-        eliminar()
+        update()
         {
-            this.$emit('eliminar',this.item);
+            this.$emit('update');
         },
     },
     computed:
@@ -56,13 +60,13 @@ export default {
             type: Boolean,
             default: true
         },
-        icono:{
+        icon:{
             type: String,
             default: 'build'
         },
         color:{
             type: String,
-            default: 'info'
+            default: null
         },
         auto:{
             type: Boolean,

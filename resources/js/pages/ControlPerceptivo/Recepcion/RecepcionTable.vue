@@ -5,8 +5,8 @@
       :items="items"
       :search="search"
       item-key="asset_number"
-      rows-per-page-text="Res. x Pag"
-      disable-initial-sort
+      
+      sort-by=""
     >
       <template slot="items" slot-scope="linea">
         <td class="text-xs-left">{{ linea.item.ca_activo }}</td>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="white" style="background: '#fffffff' ">
 
     <!-- App Toolbar -->
     <app-toolbar
@@ -19,14 +19,14 @@
         class="blue-grey lighten-5"
     >
         <!--menu-->
-        <app-menu :items=items></app-menu>
+        <app-menu></app-menu>
 
     </v-navigation-drawer>
 
     <!--Contenido-->
-    <v-content>
+    <v-content >
         <v-container>
-            <transition name="fade" mode="out-in">
+            <transition name="fade" mode="out-in" >
                 <router-view></router-view>
             </transition>
 
@@ -70,36 +70,16 @@ export default
             this.$store.commit('setUser', JSON.parse(user))
         }
     },
-    mounted()
-	{
-	    this.$router.options.routes.forEach(function(item, index) 
-		{
-			this.items.push
-			({ 
-				icon: 	item.icon, 
-				title: 	item.name, 
-				to: 	item.path 
-			});
-			
-		}, this);
-    },
     data () 
 	{
         return {
-            clipped: false,
-            drawer: true,
-            fixed: false,
-            items: [],
-            miniVariant: true,
+            clipped:     false,
+            drawer:      true,
+            fixed:       false,
+            items:       [],
+            miniVariant: false,
         }
     },
-    computed:
-    {
-        menuItems()
-        {
-            return 1//this.$router.options.routes
-        }
-    }
   }
 
 </script>
@@ -124,6 +104,9 @@ export default
     }
     .v-btn--floating .v-btn__content {
         flex: 1 0 auto;
+    }
+    .v-application {
+        background-color: var(--v-background-base) !important;
     }
 
 </style>

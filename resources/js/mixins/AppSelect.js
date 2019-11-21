@@ -24,20 +24,22 @@ export default {
                         if(typeof dataSelects[i].data == "object")
 						{
                             this.selects[key].items = dataSelects[i].data
-							
-                        }else{
-							
+                        }else
+                        {
                             this.selects[key].items = []
                         }
                         i++;
                     }
                 })
             )
-            .catch(error =>{
-            
+            .catch(error =>
+            {
                 this.showError(error);
-
-            });
+            })
+            .finally( () =>
+            {
+                this.loading = false;
+            });;
         },
         selectRequests(selects) 
         {

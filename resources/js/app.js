@@ -9,7 +9,7 @@ import vuetify from './plugins/vuetify';
 /** Componente Ppal   **/
 import App from './layouts/App.vue'
 Vue.component('app', App)
-
+ 
 /** Config **/
 Vue.prototype.$App = Object.freeze({
     title:    'Bandes',
@@ -20,13 +20,22 @@ Vue.prototype.$App = Object.freeze({
     theme:{
             headApp:   'red darkness-3',
             textTitle: 'white--text',
-            headForm:  'blue',
-            textForm:  'white--text',
+            headForm:  'red',
+            titleForm: 'white--text',
             headList:  'blue darken-3',
-            textList:  'white--text',
-            headModal: 'red',
-            textModal: 'white--text',
-            }
+            titleList: 'white--text',
+            headModal: 'blue darken-2',
+            titleModal: 'white--text',
+            button: {
+                        insert: 'success',
+                        update: 'warning',
+                        delete: 'error',
+                        reset:  'info',
+                        cancel: 'error',
+                        new:    'primary',
+                        actions:'primary'
+                    }
+        }
     })
 
 /** Components Autoload **/

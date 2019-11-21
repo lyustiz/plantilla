@@ -15,9 +15,7 @@ Route::post('login', 'Auth\LoginController@login');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-
 Route::post('/crud', 'crud@generate')->name('generate');
-
 
 Route::get('{path}', function () {
     return view('home');

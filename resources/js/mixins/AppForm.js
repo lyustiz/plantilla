@@ -3,25 +3,10 @@ import AppRules   from './AppRules'
 import AppSelect  from './AppSelect'
 import AppMessage from './AppMessage'
 
-export default {
+export default 
+{
     mixins: [AppFormat, AppRules, AppSelect, AppMessage],
-    created()
-    {
-        this.fillSelects()
-        /*this.rstForm();
-        this.basePath += this.tabla
-        this.form.id_usuario = 1;*/
-    },
-    data() {
-        return {
 
-            id_usuario: 1,//this.$store.getters.user.id_usuario,
-            valid:      true,
-            calendar:   false,
-            dates:      {},
-        }
-    },
-	
     props: {
         item: {
             type: Object,
@@ -35,28 +20,38 @@ export default {
             type: String,
             default: null
         },
+        clear:{
+            type: Boolean,
+            default: false
+        },
 	},
 
-    watch: {
+    data() 
+    {
+        return {
+            idUser:     this.$store.getters.idUser,
+            valid:      true,
+            calendar:   false,
+            dates:      {},
+            loading:    true
+        }
+    },
+
+    created()
+    {
+        this.fillSelects()
+
+        this.setDataForm(this.action)
+    },
+
+    watch: 
+    {
         action (value)
         {
-            this.mapForm()
-			
-			//this.btnAccion = val;
-
-            /*if(val=='upd')
-            {
-                this.mapForm();
-            }else
-            {
-                this.clear();
-            }*/
+            this.setDataForm(value)
         },
-
-        /*item (val) {
-            this.mapForm()
-        }*/
     },
+
 	computed: 
 	{
         fullUrl() 
@@ -69,6 +64,7 @@ export default {
             return this.fullUrl + '/' + this.item['id_' + this.resource]
         },
     },
+
     methods: 
 	{
         mapForm()
@@ -93,71 +89,95 @@ export default {
                 }
             }else
             {
+               this.reset()
+            }
+        },
+        
+        setDataForm(action)
+        {
+            if(this.action == 'upd')
+            {
+                this.mapForm()
+            }
+            else if(this.action == 'ins')
+            {
                 this.reset()
             }
         },
-				
+
 		store() 
 		{
-            if (this.$refs.form.validate()) 
-			{
-                this.loading = true;
+            if (!this.$refs.form.validate())  return 
+			
+            this.loading = true;
 				
-                axios.post(this.fullUrl, this.form)
-                    .then(response => 
-					{
-                        this.validResponse(response)
-						
-                    }).catch(error => {
-						
-                        this.showError(error);
-                    })
-            }
+            axios.post(this.fullUrl, this.form)
+            .then(response => 
+            {
+                this.validResponse(response)
+            })
+            .catch(error => 
+            {
+                this.showError(error);
+            })
+            .finally( () =>
+            {
+                this.loading = false;
+            });
         },
 		
         update() 
 		{
-            if (this.$refs.form.validate()) 
-			{
-                this.loading = true;
-				
-                axios.put(this.fullUrlId, this.form)
-                    .then(response => 
-					{
-                        this.validResponse(response)
-						
-                    }).catch(error => {
-						
-                        this.showError(error);
-                    })
-            }
+            if (!this.$refs.form.validate())  return 
+
+            this.loading = true;
+            
+            axios.put(this.fullUrlId, this.form)
+            .then(response => 
+            {
+                this.validResponse(response)
+            })
+            .catch(error =>
+            {
+                this.showError(error);
+            })
+            .finally( () =>
+            {
+                this.loading = false
+            }); 
         },
         
         reset()
         {
-            for(var key in this.form)
+            if(this.action == 'upd')
             {
-                this.form[key] = null;
+                this.mapForm()
             }
+            else
+            {
+                for(var key in this.form)
+                {
+                    this.form[key] = null;
+                }
 
-            for(var key in this.dates)
-            {
-                this.dates[key] = null;
+                for(var key in this.dates)
+                {
+                    this.dates[key] = null;
+                }
+                
+                if(this.$refs.form)
+                {
+                    this.$refs.form.reset();
+                }
             }
-            //this.$refs.form.reset();
-            this.form.id_usuario = 1
-        },
-		
-        clear ()
-        {
-            this.$refs.form.reset();
-            this.reset();
+            this.form.id_usuario = this.idUser
+            
         },
 		
         cancel()
         {
-            this.$emit('modalClose');
-            this.clear();
+            this.$emit('closeModal');
+            this.reset();
         },
     }
 }

@@ -3,9 +3,9 @@
 <v-dialog v-model="modal" persistent >
     <v-card>
 
-        <v-toolbar dark :color="HeadColor">
+        <v-toolbar dark :color="(HeadColor) ? HeadColor : $App.theme.headModal">
 
-            <v-btn icon dark @click.native="modalClose()">
+            <v-btn icon dark @click.native="$emit('closeModal')">
                 <v-icon>close</v-icon>
             </v-btn>
 
@@ -30,13 +30,7 @@
 
 <script>
 export default {
-    name: 'form-container',
-    methods:{
-        modalClose()
-        {
-            this.$emit('modalClose');
-        },
-    },
+    name: 'app-modal',
     props:
     {
         nbAction:{
@@ -49,7 +43,7 @@ export default {
         },
         HeadColor:{
             type:       String,
-            default:    'blue darken-3'
+            default:    null
         },
         TextColor:{
             type:       String,

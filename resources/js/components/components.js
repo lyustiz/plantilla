@@ -4,8 +4,9 @@ import Login 		  from '~/components/app/AppLogin'
 import ListButtons    from '~/components/list/ListButton.vue'
 import AddButton      from '~/components/list/AddButton.vue'
 import ListContainer  from '~/components/list/ListContainer.vue'
-import FormContainer  from '~/components/form/FormContainer.vue'
+import AppForm        from '~/components/form/AppForm.vue'
 import FormButtons    from '~/components/form/FormButton.vue'
+import FormDelete     from '~/components/form/FormDelete.vue'
 import AppMensaje     from '~/components/app/AppMensaje.vue'
 import AppModal       from '~/components/app/AppModal.vue'
 import AppDialog      from '~/components/app/AppDialog.vue'
@@ -18,8 +19,9 @@ Vue.component('app-login',       Login);
 Vue.component('list-buttons',    ListButtons);
 Vue.component('add-button',      AddButton);
 Vue.component('list-container',  ListContainer);
+Vue.component('app-form',        AppForm);
 Vue.component('form-buttons',    FormButtons);
-Vue.component('form-container',  FormContainer);
+Vue.component('form-delete',     FormDelete);
 Vue.component('app-message',     AppMensaje);
 Vue.component('app-modal',       AppModal);
 Vue.component('app-dialog',      AppDialog);
